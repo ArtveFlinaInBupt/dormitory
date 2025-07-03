@@ -1,6 +1,6 @@
-name := 柏油宿舍校区
-name1 := 柏油宿舍
-name2 := 柏油校区
+name := BUPT-dormcamp
+name1 := BUPT-campus
+name2 := BUPT-dormitory
 date := $(shell date +%y%m%d)
 
 src := content/main.typ
@@ -9,11 +9,11 @@ src2 := content/campus.typ
 
 out_dir := out
 
-target_pdf := $(out_dir)/$(name)$(date).pdf
-target_png_1 := $(out_dir)/$(name1)$(date).png
-target_png_2 := $(out_dir)/$(name2)$(date).png
-target_svg_1 := $(out_dir)/$(name1)$(date).svg
-target_svg_2 := $(out_dir)/$(name2)$(date).svg
+target_pdf := $(out_dir)/$(name)-$(date).pdf
+target_png_1 := $(out_dir)/$(name1)-$(date).png
+target_png_2 := $(out_dir)/$(name2)-$(date).png
+target_svg_1 := $(out_dir)/$(name1)-$(date).svg
+target_svg_2 := $(out_dir)/$(name2)-$(date).svg
 
 all: pdf png svg
 
