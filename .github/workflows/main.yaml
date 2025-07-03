@@ -30,7 +30,7 @@ jobs:
           fontist config set fonts_path ~/.local/share/fonts/fontist/fonts
           fontist install "STIX Two Math"
           fontist install "STIX Two Text"
-          fontist install "Fira Code Retina"
+          fontist install "Fira Code"
 
       - name: Install Source Han Serif SC
         run: |
