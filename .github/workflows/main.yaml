@@ -1,0 +1,77 @@
+name: Build & Optional Release
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: 0.13.1
+
+      - name: Install Fontist
+        uses: fontist/setup-fontist@v2
+
+      - name: Install Fontist Fonts
+        run: |
+          mkdir -p ~/.local/share/fonts/fontist/fonts
+          fontist config set fonts_path ~/.local/share/fonts/fontist/fonts
+          fontist install "STIX Two Math"
+          fontist install "STIX Two Text"
+          fontist install "Fira Code Retina"
+
+      - name: Install Source Han Serif SC
+        run: |
+          curl -L https://github.com/adobe-fonts/source-han-serif/releases/download/2.003R/09_SourceHanSerifSC.zip -o SourceHanSerifSC.zip
+          unzip SourceHanSerifSC.zip -d ~/.local/share/fonts
+          fc-cache -fv
+
+      - name: Check timezone
+        run: |
+          echo "Current time: $(date)"
+          echo "Timezone: $(date +%Z), $TZ"
+
+      - name: Check typst & fonts
+        run: |
+          typst fonts
+
+      - name: Build
+        run: |
+          make all
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: typst-output
+          path: |
+            out/*.pdf
+            out/*.png
+            out/*.svg
+  
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: typst-output
+          path: release-out
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release-out/*.pdf
+            release-out/*.png
+            release-out/*.svg
