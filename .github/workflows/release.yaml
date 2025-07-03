@@ -30,13 +30,14 @@ jobs:
 
       - name: Install Fontist Fonts
         run: |
+          mkdir -p ~/.local/share/fonts/fontist/fonts
+          fontist config set fonts_path ~/.local/share/fonts/fontist/fonts
           fontist install "STIX Two Math"
           fontist install "STIX Two Text"
           fontist install "Fira Code Retina"
 
       - name: Install Source Han Serif SC
         run: |
-          mkdir -p ~/.fonts
           curl -L https://github.com/adobe-fonts/source-han-serif/releases/download/2.003R/09_SourceHanSerifSC.zip -o SourceHanSerifSC.zip
           unzip SourceHanSerifSC.zip -d ~/.local/share/fonts
           fc-cache -fv
@@ -49,9 +50,6 @@ jobs:
       - name: Check typst & fonts
         run: |
           typst fonts
-          typst fonts | grep "STIX"
-          typst fonts | grep "Fira"
-          typst fonts | grep "Source"
 
       - name: Build
         run: |
