@@ -1,10 +1,10 @@
-#import "util.typ": fa-github
+#import "util.typ": github-logo
 #import "model.typ": *
 
 #let show-body(body) = {
   set document(author: ("fa_555 <fa_555@foxmail.com>",), date: datetime.today())
 
-  set text(font: font, weight: "semibold") // 应付 Source Han Serif SC 的偏细字重
+  set text(font: font, weight: "medium") // 应付 Source Han Serif SC 的偏细字重
   show regex("[\u4e00-\u9fa5]+"): set text(
     baseline: baseline-bias,
   ) // 应付 Source Han Serif SC 的偏低基线
@@ -38,7 +38,7 @@
         align: (left, center, right),
         [最后更新：#datetime.today().display("[year] 年 [month] 月 [day] 日")],
         [],
-        [贡献内容请到 #link("https://github.com/ArtveFlinaInBupt/dormitory")[#fa-github() `ArtveFlinaInBupt/dormitory`]],
+        [贡献内容请到 #link("https://github.com/ArtveFlinaInBupt/dormitory")[#github-logo `ArtveFlinaInBupt/dormitory`]],
       ),
     ),
   )
