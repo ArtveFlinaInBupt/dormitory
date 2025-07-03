@@ -1,4 +1,4 @@
-#import "util.typ": fa-github
+#import "util.typ": github-logo
 #import "model.typ": *
 
 #let show-body(body) = {
@@ -38,7 +38,7 @@
         align: (left, center, right),
         [最后更新：#datetime.today().display("[year] 年 [month] 月 [day] 日")],
         [],
-        [贡献内容请到 #link("https://github.com/ArtveFlinaInBupt/dormitory")[#fa-github() `ArtveFlinaInBupt/dormitory`]],
+        [贡献内容请到 #link("https://github.com/ArtveFlinaInBupt/dormitory")[#github-logo `ArtveFlinaInBupt/dormitory`]],
       ),
     ),
   )
