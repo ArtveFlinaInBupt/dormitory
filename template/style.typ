@@ -4,7 +4,7 @@
 #let show-body(body) = {
   set document(author: ("fa_555 <fa_555@foxmail.com>",), date: datetime.today())
 
-  set text(font: font, weight: "semibold") // 应付 Source Han Serif SC 的偏细字重
+  set text(font: font, weight: "medium") // 应付 Source Han Serif SC 的偏细字重
   show regex("[\u4e00-\u9fa5]+"): set text(
     baseline: baseline-bias,
   ) // 应付 Source Han Serif SC 的偏低基线

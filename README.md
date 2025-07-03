@@ -17,9 +17,10 @@
 - [Typst](https://github.com/typst/typst) 0.13.1
 - GNU Make
 - 字体
-  - 西文字体：[STIX Two Text](https://fonts.google.com/specimen/STIX+Two+Text)
   - 简体中文字体：[思源宋体 (Source Han Serif SC 2.003)](https://github.com/adobe-fonts/source-han-serif)
-  - 等宽字体：[Fira Code Retina](https://github.com/tonsky/FiraCode)
+  - 西文字体：[STIX Two Text](https://github.com/stipub/stixfonts)
+  - 数学字体：[STIX Two Math](https://github.com/stipub/stixfonts)
+  - 等宽字体：[Fira Code](https://github.com/tonsky/FiraCode)
 
 ### 编译
 
