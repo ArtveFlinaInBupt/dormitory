@@ -24,8 +24,8 @@ pdf: $(out_dir)
 	typst compile $(src) $(target_pdf) --root .
 
 png: $(out_dir)
-	typst compile $(src1) $(target_png_1) --root .
-	typst compile $(src2) $(target_png_2) --root .
+	typst compile $(src1) $(target_png_1) --root . --ppi 300
+	typst compile $(src2) $(target_png_2) --root . --ppi 300
 
 svg: $(out_dir)
 	typst compile $(src1) $(target_svg_1) --root .
