@@ -287,6 +287,7 @@
   stack(
     spacing: .5em,
     dir: ttb,
+    // @typstyle off
     table(
       columns: 7,
       inset: .5em,
@@ -296,10 +297,8 @@
         tcell(rowspan: 3)[*信息来源*],
         tcell(colspan: 4)[本科生],
         tcell(rowspan: 2)[研究生#super(dagger)],
-        /// fmt off
         [大一], [大二], [大三], [大四],
       ),
-
       ..data.map(gen-row-data).flatten(),
     ),
     [#super(dagger)曾经所有沙河校区的研究生须在毕业年级回迁本部，但自 2025 年起似乎不再有该要求。#active[有活跃异动，\ 未稳定]],
@@ -321,7 +320,7 @@
 
 - 校区分配：
 
-  目前，北邮遵循的分配策略为：
+  目前，学校遵循的分配策略为：
 
   - 所有本科新生都在沙河；
   - 本科生以学院为单位在某个时间点后回迁本部；
