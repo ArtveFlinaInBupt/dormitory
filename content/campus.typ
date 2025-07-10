@@ -154,7 +154,7 @@
   ),
   (
     name: "卓越工程师学院",
-    code: 38,
+    code: 380,
     fill: (..(invalid-cell(),) * 4, 本部-cell()),
     source: [
       #active[有活跃异动，未稳定] \
