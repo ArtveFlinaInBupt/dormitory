@@ -2,26 +2,11 @@
 #import "/template/model.typ": baseline-bias
 #import "/template/style.typ": show-body
 
+#import "campus-cell.typ": *
+
 #show: show-body
 
 #let active(body) = text(fill: red)[\[#body\]]
-
-// @typstyle off
-#let specified-cell(color, body) = tcell(
-  fill: color.background,
-  text(fill: color.foreground)[#body]
-)
-
-#let 沙河-colour = (background: teal.lighten(85%), foreground: teal.darken(25%))
-#let 海南-colour = (background: green.lighten(85%), foreground: green.darken(25%))
-#let 本部-colour = (background: red.lighten(85%), foreground: red.darken(25%))
-#let invalid-colour = (background: white, foreground: white)
-
-#let 沙河-cell(body: [沙]) = specified-cell(沙河-colour, body)
-#let 海南-cell(body: [海南]) = specified-cell(海南-colour, body)
-#let 本部-cell(body: [本]) = specified-cell(本部-colour, body)
-#let invalid-cell(body: []) = specified-cell(invalid-colour, body)
-
 
 #let get-subway(name) = {
   let Beijing-subway-data = (

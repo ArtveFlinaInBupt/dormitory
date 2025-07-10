@@ -1,6 +1,8 @@
 #import "/template/util.typ": *
 #import "/template/style.typ": show-body
 
+#import "campus-cell.typ": *
+
 #show: show-body
 
 #let male-colour = eastern.darken(5%)
@@ -54,10 +56,11 @@
 )
 // @typstyle off
 #let 主体表格 = table(
-  columns: (..(auto,) * 14, 20em),
+  columns: (..(auto,) * 15, 20em),
   inset: .5em,
-  align: (x, y) => if y != 0 and x == 14 { left } else { center },
+  align: (x, y) => if y != 0 and x == 15 { left } else { center },
   table.header(
+    tcell(rowspan: 3)[*所在校区*],
     tcell(rowspan: 3)[*宿舍楼*],
     tcell(colspan: 12)[*配置*],
     tcell(rowspan: 3)[*竣工年份*],
@@ -77,6 +80,7 @@
     [科研楼],
   ),
 
+  沙河-cell(rowspan: 5, body: [沙河校区]),
   female[雁南 S6],
   tcell(rowspan: 5, [本科生\ 硕士研究生\ 博士研究生]),
   tcell(rowspan: 5, good[4]),
@@ -124,6 +128,7 @@
   [#male[雁北 B]\ #male[雁北 A]],
   neutral[6 层\ 部分有电梯#super(dagger.double)],
 
+  本部-cell(rowspan: 10, body: [西土城\ 校区\ （校本部）]),
   mixed[学 8],
   [博士研究生],
   good[4],
