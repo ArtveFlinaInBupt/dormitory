@@ -197,7 +197,7 @@
   good[上床下桌],
   neutral[公卫],
   good[有],
-  neutral[15 层\ 10 部电梯],
+  neutral[15 层\ 7 部电梯],
   good[正常#quest],
   good[近],
   good[北门柜],
