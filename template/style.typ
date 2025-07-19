@@ -6,7 +6,7 @@
   set page(foreground: if enable {
     rotate(-30deg, rect(width: 200%, height: 200%, fill: tiling(
       size: (120pt, 80pt),
-      place(dy: 10pt, text(font: font, size: 1.5em, fill: luma(216), watermark-text)),
+      place(dy: 10pt, text(font: font.serif, size: 1.5em, fill: luma(216), watermark-text)),
     )))
   })
 
@@ -16,7 +16,7 @@
 #let show-body(body) = {
   set document(author: ("fa_555 <fa_555@foxmail.com>",), date: datetime.today())
 
-  set text(font: font, weight: "medium") // 应付 Source Han Serif SC 的偏细字重
+  set text(font: font.serif, weight: "medium") // 应付 Source Han Serif SC 的偏细字重
   show regex("[\u4e00-\u9fa5]+"): set text(
     baseline: baseline-bias,
   ) // 应付 Source Han Serif SC 的偏低基线
@@ -30,10 +30,10 @@
 
   set table(stroke: stroke, align: center + horizon)
 
-  show math.equation: set text(font: math-font)
+  show math.equation: set text(font: font.math)
   show math.equation.where(block: false): it => math.display(it)
 
-  show raw: set text(font: mono-font)
+  show raw: set text(font: font.mono)
 
   set list(indent: 1em)
 

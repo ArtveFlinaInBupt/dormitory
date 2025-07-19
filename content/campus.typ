@@ -2,68 +2,12 @@
 #import "/template/model.typ": baseline-bias
 #import "/template/style.typ": show-body
 
+#import "subway.typ": get-subway
 #import "campus-cell.typ": *
 
 #show: show-body
 
 #let active(body) = text(fill: red)[\[#body\]]
-
-#let get-subway(name) = {
-  let Beijing-subway-data = (
-    "10": (
-      background: rgb(0, 146, 188), // Typst 对 CMYK 的支持或许有问题
-      name: "10",
-      url: "https://www.pantone.com/color-finder/313-C",
-    ),
-    "12": (
-      background: rgb(155, 90, 26),
-      name: "12",
-      url: "https://www.pantone.com/color-finder/154-C",
-    ),
-    "13": (
-      background: rgb(244, 218, 64),
-      foreground: rgb(0, 51, 128), // cmyk(100%, 60%, 0%, 50%),
-      name: "13",
-      url: "https://www.pantone.com/color-finder/7404-C",
-    ),
-    "19": (
-      background: rgb(221, 156, 223),
-      foreground: rgb(0, 51, 128), // cmyk(100%, 60%, 0%, 50%),
-      name: "19",
-      url: "https://www.pantone.com/color-finder/251-C",
-    ),
-    "27": (
-      background: rgb(217, 134, 186),
-      name: "昌平线",
-      cjk: true,
-      url: "https://www.pantone.com/color-finder/673-C",
-    ),
-  )
-  let item = Beijing-subway-data.at(str(name))
-  if "cjk" not in item {
-    item.cjk = false
-  }
-  if "foreground" not in item {
-    item.foreground = white
-  }
-
-  let y-offset = .25em
-
-  box(
-    fill: item.background,
-    inset: (x: .15em),
-    outset: if item.cjk {
-      (
-        top: y-offset - baseline-bias,
-        bottom: y-offset + baseline-bias,
-      )
-    } else {
-      (y: y-offset)
-    }, // 处理思源宋导致的 baseline 问题
-    radius: .25em,
-    text(fill: item.foreground, item.name),
-  )
-}
 
 #let data = (
   (
@@ -256,7 +200,7 @@
   海南-cell(),
   [海南省陵水黎族自治县\ 黎安国际教育创新试验区],
   [
-    全新的环境，2022 年投入使用。
+    全新的校园环境，2022 年投入使用。
 
     全国一流的住宿条件，毕竟交通实在太不便了。
   ],
@@ -295,7 +239,7 @@
 
 #disclaimer
 
-尽量为所有的信息给出来源；规划持续变动，请以实际为准，不要过依赖本图。
+尽量为所有的信息给出来源；规划持续变动，请以实际为准，不要过于依赖本图。
 
 #text(fill: red.darken(25%))[*欢迎新生参考本表内容。*]
 
@@ -308,7 +252,7 @@
   目前，学校遵循的分配策略为：
 
   - 所有本科新生都在沙河；
-  - 本科生以学院为单位在某个时间点后回迁本部；
+  - 本科生以学院为单位可能在某个时间点后回迁本部；
   - 研究生以学院为单位倾向于分配在同一校区#super(dagger)。
 
   #figure(详表)
