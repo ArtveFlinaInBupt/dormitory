@@ -8,7 +8,7 @@
 
 ## 获取
 
-[WIP] 点击右侧 Releases 中最新版本下载。
+在 [Releases](https://github.com/ArtveFlinaInBupt/dormitory/releases) 中下载。
 
 ## 构建
 
@@ -27,7 +27,7 @@
 ```bash
 git clone git@github.com:ArtveFlinaInBupt/dormitory.git
 cd dormitory
-make
+make lang=zh
 # 所有产物会在 `out/` 目录下
 ```
 
