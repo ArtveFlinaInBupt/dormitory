@@ -53,6 +53,6 @@
       (y: y-offset)
     }, // 处理思源字体导致的 baseline 问题
     radius: .25em,
-    text(fill: item.foreground, font: font.sans, weight: "regular", item.name),
+    text(fill: item.foreground, weight: "regular", item.name),
   )
 }
