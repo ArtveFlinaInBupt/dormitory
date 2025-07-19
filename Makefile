@@ -14,7 +14,7 @@ endif
 
 date := $(shell date +%y%m%d)
 
-src := content/main.typ
+src := main.typ
 src1 := content/dormitory.typ
 src2 := content/campus.typ
 

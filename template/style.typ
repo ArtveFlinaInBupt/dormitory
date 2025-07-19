@@ -1,6 +1,18 @@
 #import "util.typ": github-logo
 #import "model.typ": *
 
+#let show-watermark(enable: true, body) = {
+  let watermark-text = [预览]
+  set page(foreground: if enable {
+    rotate(-30deg, rect(width: 200%, height: 200%, fill: tiling(
+      size: (120pt, 80pt),
+      place(dy: 10pt, text(font: font, size: 1.5em, fill: luma(216), watermark-text)),
+    )))
+  })
+
+  body
+}
+
 #let show-body(body) = {
   set document(author: ("fa_555 <fa_555@foxmail.com>",), date: datetime.today())
 
@@ -42,6 +54,8 @@
       ),
     ),
   )
+
+  show: show-watermark.with(enable: not "release" in sys.inputs)
 
   body
 }
