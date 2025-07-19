@@ -26,21 +26,23 @@ target_png_2 := $(out_dir)/$(name2)$(date).png
 target_svg_1 := $(out_dir)/$(name1)$(date).svg
 target_svg_2 := $(out_dir)/$(name2)$(date).svg
 
+COMPILE := typst compile --root . --input release=
+
 all: pdf png svg
 
 $(out_dir):
 	mkdir -p $(out_dir)
 
 pdf: $(out_dir)
-	typst compile $(src) $(target_pdf) --root .
+	$(COMPILE) $(src) $(target_pdf)
 
 png: $(out_dir)
-	typst compile $(src1) $(target_png_1) --root . --ppi 300
-	typst compile $(src2) $(target_png_2) --root . --ppi 300
+	$(COMPILE) $(src1) $(target_png_1) --ppi 300
+	$(COMPILE) $(src2) $(target_png_2) --ppi 300
 
 svg: $(out_dir)
-	typst compile $(src1) $(target_svg_1) --root .
-	typst compile $(src2) $(target_svg_2) --root .
+	$(COMPILE) $(src1) $(target_svg_1)
+	$(COMPILE) $(src2) $(target_svg_2)
 
 clean:
 	rm -rf $(out_dir)
