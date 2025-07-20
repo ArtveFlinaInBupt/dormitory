@@ -50,7 +50,7 @@
         align: (left, center, right),
         [最后更新：#datetime.today().display("[year] 年 [month] 月 [day] 日")],
         [],
-        [贡献内容请到 #link("https://github.com/ArtveFlinaInBupt/dormitory")[#github-logo `ArtveFlinaInBupt/dormitory`]],
+        [提供信息或贡献内容请到 #link("https://github.com/ArtveFlinaInBupt/dormitory")[#github-logo `ArtveFlinaInBupt/dormitory`]],
       ),
     ),
   )
