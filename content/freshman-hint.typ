@@ -4,7 +4,6 @@
   #show: body => {
     set text(fill: red.darken(25%))
     set list(spacing: .75em, tight: false)
-    show highlight: it => underline(offset: .3em, text(fill: red, weight: "black", it))
     align(center, block(
       stroke: (
         paint: red.darken(25%),

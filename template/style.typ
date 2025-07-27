@@ -13,7 +13,10 @@
   body
 }
 
-#let show-body(body) = {
+#let show-body(..args, body) = {
+  let config = args.named()
+  let spinoff = config.at("spinoff", default: false)
+
   set document(author: ("fa_555 <fa_555@foxmail.com>",), date: datetime.today())
 
   set text(font: font.serif, weight: "medium") // 应付 Source Han Serif SC 的偏细字重
@@ -21,6 +24,8 @@
     baseline: baseline-bias,
   ) // 应付 Source Han Serif SC 的偏低基线
   set par(leading: .5em, spacing: .85em, justify: true)
+
+  show highlight: it => underline(offset: .3em, text(fill: red, weight: "black", it))
 
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
@@ -50,12 +55,12 @@
         align: (left, center, right),
         [最后更新：#datetime.today().display("[year] 年 [month] 月 [day] 日")],
         [],
-        [提供信息或贡献内容请到 #link("https://github.com/ArtveFlinaInBupt/dormitory")[#github-logo `ArtveFlinaInBupt/dormitory`]],
+        [提供信息或贡献内容请到 #if spinoff { link("mailto:fa_555@foxmail.com", `fa_555`) } else { link("https://github.com/ArtveFlinaInBupt/dormitory")[#github-logo `ArtveFlinaInBupt/dormitory`] }],
       ),
     ),
   )
 
-  show: show-watermark.with(enable: not "release" in sys.inputs)
+  show: show-watermark.with(enable: not "release" in sys.inputs and not spinoff)
 
   body
 }
