@@ -50,7 +50,7 @@
   good[好],
   box(
     width: .1em,
-    height: 59.5em, // 需在更新表格后手动调整
+    height: 54em, // 需在更新表格后手动调整
     fill: gradient.linear(green, red, angle: 90deg),
   ),
   bad[坏],
@@ -64,7 +64,7 @@
     tcell(rowspan: 3)[*所在校区*],
     tcell(rowspan: 3)[*宿舍楼*],
     tcell(colspan: 12)[*配置*],
-    tcell(rowspan: 3)[*竣工年份*],
+    tcell(rowspan: 3)[*最后装修\ 年份*],
     tcell(rowspan: 3)[*其他说明*\ #unknown[（欢迎补充）]],
     tcell(rowspan: 2)[住户类型],
     tcell(rowspan: 2)[人数],
@@ -81,53 +81,26 @@
     [科研楼],
   ),
 
-  沙河-cell(rowspan: 5, body: [沙河校区]),
+  沙河-cell(body: [沙河校区]),
   female[雁南 S6],
-  tcell(rowspan: 5, [本科生\ 硕士研究生\ 博士研究生]),
-  tcell(rowspan: 5, good[4]),
-  tcell(rowspan: 5, good[上床下桌]),
-  tcell(rowspan: 5, good[独卫\ +\ 公卫#super(dagger)]),
-  tcell(rowspan: 5, good[有]),
-  tcell(rowspan: 3, good[6 层\ 有电梯]),
-  tcell(rowspan: 5, good[正常]),
-  tcell(rowspan: 5, bad[远]),
-  tcell(rowspan: 5, bad[小南门柜]),
+  tcell([本科生\ 硕士研究生\ 博士研究生]),
+  tcell(good[4]),
+  tcell(good[上床下桌]),
+  tcell(good[独卫\ +\ 公卫#super(dagger)]),
+  tcell(good[有]),
+  tcell(good[6 层\ 有电梯]),
+  tcell(good[正常]),
+  tcell(bad[远]),
+  tcell(bad[小南门柜]),
   good[层浴，有隔板],
-  tcell(rowspan: 5, []),
-  tcell(rowspan: 5, []),
+  tcell([]),
+  tcell([]),
   [2020],
   [
     单独一期工程修建，与 S1 \~ S5 无关
 
     面积大于其他宿舍，家具更好，上下床走台阶而非爬梯子
   ],
-
-  [
-    #female[雁南 S5] \
-    #mixed[雁南 S4] \
-    #male[雁南 S3] \
-    #male[雁南 S2] \
-    #male[雁南 S1] \
-  ],
-  good[层浴],
-  [2016],
-  [
-    S4 有一部分宿舍现已与 S4 之间封死，成为女生宿舍，由 S5 代管，从 S5 进出
-  ],
-  [#male[雁北 E]\ #male[雁北 D2]],
-  good[层浴，有隔板#super(dagger)],
-  tcell(rowspan: 3)[2014],
-  [
-    在 S6 没建好时曾经是女寝，改男寝后浴室隔板没拆
-  ],
-  [#male[雁北 D1]\ #male[雁北 C]],
-  good[6 层\ 有电梯#super(dagger.double)],
-  tcell(rowspan: 2, good[层浴]),
-  tcell(rowspan: 2)[
-    面积略小于雁南
-  ],
-  [#male[雁北 B]\ #male[雁北 A]],
-  neutral[6 层\ 部分有电梯#super(dagger.double)],
 
   本部-cell(rowspan: 11, body: [西土城\ 校区\ （校本部）]),
 
@@ -297,6 +270,36 @@
   ],
 
   wip[学 2], tcell(colspan: 14, rowspan: 2, wip[正在翻修]), wip[学 13],
+
+  沙河-cell(body: [沙河校区]),
+  wip[雁南 S2\ 雁南 S3\ 雁南 S4\ 雁南 S5],
+  tcell(colspan: 14, wip[正在更换家具]),
+  // [
+  //   #female[雁南 S5] \
+  //   #mixed[雁南 S4] \
+  //   #male[雁南 S3] \
+  //   #male[雁南 S2] \
+  // ],
+  // good[层浴],
+  // [2016],
+  // [
+  //   S4 有一部分宿舍现已与 S4 之间封死，成为女生宿舍，由 S5 代管，从 S5 进出
+  // ],
+  // [#male[雁北 E]\ #male[雁北 D2]],
+  // good[层浴，有隔板#super(dagger)],
+  // tcell(rowspan: 3)[2014],
+  // [
+  //   在 S6 没建好时曾经是女寝，改男寝后浴室隔板没拆
+  // ],
+  // [#male[雁北 D1]\ #male[雁北 C]],
+  // good[6 层\ 有电梯#super(dagger.double)],
+  // tcell(rowspan: 2, good[层浴]),
+  // tcell(rowspan: 2)[
+  //   面积略小于雁南
+  // ],
+  // [#male[雁北 B]\ #male[雁北 A]],
+  // neutral[6 层\ 部分有电梯#super(dagger.double)],
+
 )
 
 #let 表格注 = stack(
