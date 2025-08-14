@@ -50,7 +50,7 @@
   good[好],
   box(
     width: .1em,
-    height: 54em, // 需在更新表格后手动调整
+    height: 68em, // 需在更新表格后手动调整
     fill: gradient.linear(green, red, angle: 90deg),
   ),
   bad[坏],
@@ -81,26 +81,46 @@
     [科研楼],
   ),
 
-  沙河-cell(body: [沙河校区]),
+  沙河-cell(rowspan: 5, body: [沙河校区]),
   female[雁南 S6],
-  tcell([本科生\ 硕士研究生\ 博士研究生]),
-  tcell(good[4]),
-  tcell(good[上床下桌]),
-  tcell(good[独卫\ +\ 公卫#super(dagger)]),
-  tcell(good[有]),
-  tcell(good[6 层\ 有电梯]),
-  tcell(good[正常]),
-  tcell(bad[远]),
-  tcell(bad[小南门柜]),
+  tcell(rowspan: 5, [本科生\ 硕士研究生\ 博士研究生]),
+  tcell(rowspan: 5, good[4]),
+  tcell(rowspan: 5, good[上床下桌]),
+  tcell(rowspan: 5, good[独卫\ +\ 公卫#super(dagger)]),
+  tcell(rowspan: 5, good[有]),
+  tcell(rowspan: 3, good[6 层\ 有电梯]),
+  tcell(rowspan: 5, good[正常]),
+  tcell(rowspan: 5, bad[远]),
+  tcell(rowspan: 5, bad[小南门柜]),
   good[层浴，有隔板],
-  tcell([]),
-  tcell([]),
+  tcell(rowspan: 5, []),
+  tcell(rowspan: 5, []),
   [2020],
   [
     单独一期工程修建，与 S1 \~ S5 无关
 
     面积大于其他宿舍，家具更好，上下床走台阶而非爬梯子
   ],
+
+  female[雁南 S5\ （24 级前）],
+  good[层浴],
+  [2016],
+  [由于 S6 不足以装下沙河所有女生，S5 仍有一部分宿舍中居住 2024 级以上的女生，维持原有家具未更换],
+
+  [#male[雁北 E]\ #male[雁北 D2]],
+  good[层浴，有隔板#super(dagger)],
+  tcell(rowspan: 3)[2014],
+  [
+    在 S6 没建好时曾经是女寝，改男寝后浴室隔板没拆
+  ],
+  [#male[雁北 D1]\ #male[雁北 C]],
+  good[6 层\ 有电梯#super(dagger.double)],
+  tcell(rowspan: 2, good[层浴]),
+  tcell(rowspan: 2)[
+    面积略小于雁南
+  ],
+  [#male[雁北 B]\ #male[雁北 A]],
+  neutral[6 层\ 部分有电梯#super(dagger.double)],
 
   本部-cell(rowspan: 11, body: [西土城\ 校区\ （校本部）]),
 
@@ -246,7 +266,7 @@
   good[近],
   [2003],
   [
-    里面好像个迷宫，第一次去不知道楼梯在哪
+    里面好像个迷宫，第一次去找不到楼梯
 
     离经管楼和科研楼近，也许可以……
   ],
@@ -259,47 +279,43 @@
   good[有],
   neutral[5 层\ 无电梯],
   good[正常#quest],
-  bad[远],
-  good[西门柜],
-  bad[远],
-  good[近],
-  bad[远],
+  tcell(rowspan: 2, bad[远]),
+  tcell(rowspan: 2, good[西门柜]),
+  tcell(rowspan: 2, bad[远]),
+  tcell(rowspan: 2, good[近]),
+  tcell(rowspan: 2, bad[远]),
   [1993],
   [
     有翻修计划，预计将会在 2025 年底开始
   ],
 
-  wip[学 2], tcell(colspan: 14, rowspan: 2, wip[正在翻修]), wip[学 13],
+  wip[学 2],
+  tcell(colspan: 7, rowspan: 2, wip[正在翻修]),
+  [2025],
+  [],
+
+  wip[学 13],
+  bad[远],
+  good[西门柜],
+  bad[远],
+  good[近],
+  bad[远],
+  [2025],
+  [],
 
   沙河-cell(body: [沙河校区]),
-  wip[雁南 S2\ 雁南 S3\ 雁南 S4\ 雁南 S5],
-  tcell(colspan: 14, wip[正在更换家具]),
-  // [
-  //   #female[雁南 S5] \
-  //   #mixed[雁南 S4] \
-  //   #male[雁南 S3] \
-  //   #male[雁南 S2] \
-  // ],
-  // good[层浴],
-  // [2016],
-  // [
-  //   S4 有一部分宿舍现已与 S4 之间封死，成为女生宿舍，由 S5 代管，从 S5 进出
-  // ],
-  // [#male[雁北 E]\ #male[雁北 D2]],
-  // good[层浴，有隔板#super(dagger)],
-  // tcell(rowspan: 3)[2014],
-  // [
-  //   在 S6 没建好时曾经是女寝，改男寝后浴室隔板没拆
-  // ],
-  // [#male[雁北 D1]\ #male[雁北 C]],
-  // good[6 层\ 有电梯#super(dagger.double)],
-  // tcell(rowspan: 2, good[层浴]),
-  // tcell(rowspan: 2)[
-  //   面积略小于雁南
-  // ],
-  // [#male[雁北 B]\ #male[雁北 A]],
-  // neutral[6 层\ 部分有电梯#super(dagger.double)],
-
+  wip[雁南 S2\ 雁南 S3\ 雁南 S4\ 雁南 S5\ （25 级后）],
+  tcell(colspan: 3, wip[正在更换家具]),
+  good[独卫\ +\ 公卫#super(dagger)],
+  good[有],
+  good[6 层\ 有电梯],
+  good[正常],
+  bad[远],
+  bad[小南门柜],
+  good[层浴],
+  [],
+  [],
+  [2025],
 )
 
 #let 表格注 = stack(
@@ -317,9 +333,9 @@
 
 虽然表里有些距离评价是远，但是巴掌大的校园再远能有多远呢？不提供到食堂的距离评价：从任何宿舍到食堂都比教学楼群到食堂更近。不提供沙河宿舍到教学楼、科研楼的距离评价。
 
-发现把沙河宿舍编号全倒着放正好大体符合由好到坏（归功于雁北 E, D2 浴室有隔板，雁北缺电梯），挺好玩的，所以就倒着放了。
+发现把沙河宿舍编号倒着放正好大体符合由好到坏（归功于雁北 E, D2 浴室有隔板，雁北缺电梯），挺好玩的，所以就倒着放了。
 
-本文档实际上旨在提供信息而非排名，因此不接受任何有关排名顺序的建议和批评——几乎所有人都觉得别人住得比自己好，学 3, 5, 8, 9, 10, 11, 29 甚至沙河雁北中的任何一个放前面都有人不满意，被喷得实在烦。
+本文档旨在提供信息而非排个高低，因此不接受任何有关排名顺序的建议和批评——几乎所有人都觉得别人住得比自己好，学 3, 5, 8, 9, 10, 11, 29 甚至沙河雁北中的任何一个放前面都有人不满意，被喷得实在烦。
 
 #freshman-hint
 
