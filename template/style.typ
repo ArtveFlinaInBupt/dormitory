@@ -55,7 +55,11 @@
         align: (left, center, right),
         [最后更新：#datetime.today().display("[year] 年 [month] 月 [day] 日")],
         [],
-        [提供信息或贡献内容请到 #if spinoff { link("mailto:fa_555@foxmail.com", `fa_555`) } else { link("https://github.com/ArtveFlinaInBupt/dormitory")[#github-logo `ArtveFlinaInBupt/dormitory`] }],
+        [
+          提供信息或贡献内容请到
+          #if not spinoff [#link("https://github.com/ArtveFlinaInBupt/dormitory")[#github-logo `ArtveFlinaInBupt/dormitory`] 或]
+          #link("mailto:fa_555@foxmail.com", `fa_555`)
+        ],
       ),
     ),
   )
