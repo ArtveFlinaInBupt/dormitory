@@ -14,18 +14,21 @@
     name: "信息与通信工程学院",
     code: 311,
     count: 2,
+    dept: "本部",
     source: [23 级大三前回迁],
   ),
   (
     name: "电子工程学院",
     code: 312,
     count: 2,
+    dept: "本部",
     source: [23 级大三前回迁],
   ),
   (
     name: "计算机学院（国家示范性软件学院）",
     code: 313,
     count: 2,
+    dept: none,
     source: [
       23 级大二前回迁 \
       24 级大二前未回迁 \
@@ -38,6 +41,7 @@
     name: "数字媒体与设计艺术学院",
     code: 316,
     count: 5,
+    dept: "沙河",
     source: [21 级毕业前未曾回迁],
   ),
   // 邮政院 317 RIP
@@ -45,12 +49,14 @@
     name: "网络空间安全学院",
     code: 318,
     count: 5,
+    dept: "沙河",
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "经济管理学院",
     code: 321,
     count: 1,
+    dept: "本部",
     source: [24 级大二前回迁],
   ),
   (
@@ -63,12 +69,14 @@
       沙河-cell(),
       沙河-cell(),
     ),
+    dept: "沙河",
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "马克思主义学院",
     code: 332,
     fill: (..(invalid-cell(),) * 4, 沙河-cell()),
+    dept: "沙河",
     source: [],
   ),
   // 理学院 341 RIP
@@ -76,6 +84,7 @@
     name: "国际学院",
     code: 351,
     count: (1, 3),
+    dept: "本部",
     source: [24 级大二前回迁],
   ),
   (
@@ -94,6 +103,7 @@
     name: "集成电路学院",
     code: 379,
     count: 2,
+    dept: "本部",
     source: [23 级大三前回迁],
   ),
   (
@@ -108,18 +118,21 @@
     name: "智能工程与自动化学院",
     code: 386,
     count: 5,
+    dept: "沙河",
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "数学科学学院",
     code: 387,
     count: 5,
+    dept: "沙河",
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "物理科学与技术学院",
     code: 388,
     count: 5,
+    dept: "沙河",
     source: [21 级毕业前未曾回迁],
   ),
   (
@@ -144,6 +157,19 @@
   (..(沙河-cell(),) * 沙河-count, ..(本部-cell(),) * 本部-count, ..(invalid-cell(),) * 空-count)
 }
 
+#let dept-building(key) = {
+  let default = tcell[]
+
+  if key == none { default } else {
+    (
+      "沙": 沙河-cell(),
+      "沙河": 沙河-cell(),
+      "本": 本部-cell(),
+      "本部": 本部-cell(),
+    ).at(key, default: default)
+  }
+}
+
 #let gen-row-data(row) = {
   let fill = if "count" in row.keys() {
     let count = row.count
@@ -163,6 +189,8 @@
     [(#row.code) #row.name],
     // [#row.name\ (#row.code)],
     ..fill,
+    // dept-building(row.dept),
+    dept-building(row.at("dept", default: none)),
     [#row.source],
   )
 }
@@ -218,11 +246,12 @@
     dir: ttb,
     // @typstyle off
     table(
-      columns: 7,
+      columns: 8,
       inset: .5em,
       table.header(
         tcell(rowspan: 3)[*学院*],
-        tcell(colspan: 5)[*校区*（宿舍所在地）],
+        tcell(colspan: 5)[*校区*（宿舍）],
+        tcell(rowspan: 3)[*校区*\ （学院楼）],
         tcell(rowspan: 3)[*信息来源*],
         tcell(colspan: 4)[本科生],
         tcell(rowspan: 2)[研究生#super(dagger)],
@@ -230,7 +259,7 @@
       ),
       ..data.map(gen-row-data).flatten(),
     ),
-    [#super(dagger)曾经所有沙河校区的研究生须在毕业年级回迁本部，但自 2025 年起似乎不再有该要求。#active[有活跃异动，\ 未稳定]],
+    [#super(dagger)曾经所有沙河校区的研究生须在毕业年级回迁本部，但自 2025 年起似乎不再有该要求。#active[有活跃异动，未稳定]],
     [#super(dagger.double)人文学院法学专业联培学生大三学年前往中国政法大学参与联合培养。],
   ),
 )
