@@ -112,6 +112,8 @@
   good[层浴，有隔板#super(dagger)],
   tcell(rowspan: 3)[2014],
   [
+    沙河最初规划中有且仅有女寝浴室有隔板
+
     在 S6 没建好时曾经是女寝，改男寝后浴室隔板没拆
   ],
   [#male[雁北 D1]\ #male[雁北 C]],
@@ -123,7 +125,7 @@
   [#male[雁北 B]\ #male[雁北 A]],
   neutral[6 层\ 部分有电梯#super(dagger.double)],
 
-  本部-cell(rowspan: 11, body: [西土城\ 校区\ （校本部）]),
+  本部-cell(rowspan: 7, body: [西土城\ 校区\ （校本部）]),
 
   male[学 13],
   [硕士研究生\ 博士研究生],
@@ -252,6 +254,37 @@
   [2011],
   [],
 
+
+  沙河-cell(body: [沙河校区]),
+  [#male[雁南 S2\ 雁南 S3\ 雁南 S4]\ #female[雁南 S5\ （25 级后）]],
+  [本科生\ 硕士研究生\ 博士研究生#quest],
+  neutral[6],
+  neutral[
+    #show: align.with(left)
+
+    上床上床 \
+    下床#backlink("https://baike.baidu.com/pic/TFBOYS/9083733/0/3c6d55fbb2fb4316390c99072da4462309f7d3b8")[下桌] \
+  ],
+  good[独卫\ +\ 公卫#super(dagger)],
+  good[有],
+  good[6 层\ 有电梯],
+  good[正常],
+  bad[远],
+  bad[小南门柜],
+  good[层浴],
+  [],
+  [],
+  [2016],
+  [
+    家具布局难以评价
+
+    床铺尺寸不统一
+
+    衷心希望新的宿舍楼能够早日建成分担住宿压力，拯救水深火热中的雁南住户
+  ],
+
+  本部-cell(rowspan: 4, body: [西土城\ 校区\ （校本部）]),
+
   female[学 4\ （本硕）],
   [本科生\ 硕士研究生],
   neutral[6],
@@ -316,29 +349,6 @@
   tcell(colspan: 7, wip[正在翻修]),
   [2025],
   [],
-
-  // wip[学 13],
-  // bad[远],
-  // good[西门柜],
-  // bad[远],
-  // good[近],
-  // bad[远],
-  // [2025],
-  // [],
-
-  沙河-cell(body: [沙河校区]),
-  wip[雁南 S2\ 雁南 S3\ 雁南 S4\ 雁南 S5\ （25 级后）],
-  tcell(colspan: 3, wip[正在更换家具]),
-  good[独卫\ +\ 公卫#super(dagger)],
-  good[有],
-  good[6 层\ 有电梯],
-  good[正常],
-  bad[远],
-  bad[小南门柜],
-  good[层浴],
-  [],
-  [],
-  [2025],
 )
 
 #let 表格注 = stack(
