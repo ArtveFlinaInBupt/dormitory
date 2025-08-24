@@ -6,4 +6,20 @@
 
 #let baseline-bias = .05em
 
+#let colors = (link: blue)
+
 #let stroke = (paint: luma(50%), thickness: .75pt)
+
+#let backlink(url, body) = {
+  // show: underline.with(offset: .25em, stroke: (
+  //   thickness: .5pt,
+  // ))
+
+  // walkaround
+  show: box.with(
+    outset: (bottom: .25em),
+    stroke: (bottom: (paint: colors.link, thickness: .5pt)), // avoid context
+  )
+
+  link(url, body + " " + text(font: font.mono, weight: "light")[↗️])
+}

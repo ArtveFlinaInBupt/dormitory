@@ -1,5 +1,6 @@
 #import "/template/util.typ": *
 #import "/template/style.typ": show-body
+#import "/template/model.typ": backlink
 
 #import "campus-cell.typ": *
 #import "freshman-hint.typ": *
@@ -124,6 +125,28 @@
 
   本部-cell(rowspan: 11, body: [西土城\ 校区\ （校本部）]),
 
+  male[学 13],
+  [硕士研究生\ 博士研究生],
+  [#good[2] 或 #good[4]],
+  good[上床下桌],
+  neutral[公卫],
+  [少量房间#good[有]\ 其余为#neutral[假阳台]],
+  neutral[5 层\ 无电梯],
+  good[正常#quest],
+  bad[远],
+  good[西门柜],
+  bad[远],
+  neutral[中],
+  bad[远],
+  [2025],
+  [
+    曾经的“公主坟”，现状可参考#backlink("https://bbs.byr.cn/#!article/IWhisper/8475595")[北邮人论坛]
+
+    楼浴尚未启用
+
+    使用沙河雁南换下的家具
+  ],
+
   female[学 29],
   [硕士研究生\ 博士研究生],
   [8 人套间\ 每室 #good[2 \~ 4] 人],
@@ -167,7 +190,7 @@
 
     每天凌晨停冲厕用中水
 
-    说好的层浴还会有吗？
+    层浴尚未启用
   ],
 
   mixed[学 8],
@@ -202,7 +225,7 @@
   bad[15 层\ 2 部电梯],
   bad[每天凌晨\ 停冲厕用中水],
   neutral[中],
-  neutral[北门柜\ #neutral[西门柜]#wip[（学 13\ 工地暂时阻断）]],
+  neutral[北门柜\ 西门柜],
   neutral[中],
   neutral[中],
   bad[远],
@@ -290,18 +313,18 @@
   ],
 
   wip[学 2],
-  tcell(colspan: 7, rowspan: 2, wip[正在翻修]),
+  tcell(colspan: 7, wip[正在翻修]),
   [2025],
   [],
 
-  wip[学 13],
-  bad[远],
-  good[西门柜],
-  bad[远],
-  good[近],
-  bad[远],
-  [2025],
-  [],
+  // wip[学 13],
+  // bad[远],
+  // good[西门柜],
+  // bad[远],
+  // good[近],
+  // bad[远],
+  // [2025],
+  // [],
 
   沙河-cell(body: [沙河校区]),
   wip[雁南 S2\ 雁南 S3\ 雁南 S4\ 雁南 S5\ （25 级后）],

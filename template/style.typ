@@ -42,7 +42,7 @@
 
   set list(indent: 1em)
 
-  show link: set text(fill: blue)
+  show link: set text(fill: colors.link)
 
   set page(
     height: auto,
