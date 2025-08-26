@@ -51,7 +51,7 @@
   good[好],
   box(
     width: .1em,
-    height: 71.5em, // 需在更新表格后手动调整
+    height: 68.5em, // 需在更新表格后手动调整
     fill: gradient.linear(green, red, angle: 90deg),
   ),
   bad[坏],
@@ -103,10 +103,10 @@
     面积大于其他宿舍，家具更好，上下床走台阶而非爬梯子
   ],
 
-  female[雁南 S5\ （24 级前）],
+  female[雁南 S5\ 雁南 S4\ （24 级前）],
   good[层浴],
   [2016],
-  [由于 S6 不足以装下沙河所有女生，S5 仍有一部分宿舍中居住 2024 级以上的女生，维持原有家具未更换],
+  [由于 S6 不足以装下沙河所有女生，此处仍居住了一部分 2024 级以上的女生，所在宿舍维持原有家具未更换],
 
   [#male[雁北 E]\ #male[雁北 D2]],
   good[层浴，有隔板#super(dagger)],
@@ -117,7 +117,7 @@
     在 S6 没建好时曾经是女寝，改男寝后浴室隔板没拆
   ],
   [#male[雁北 D1]\ #male[雁北 C]],
-  good[6 层\ 有电梯#super(dagger.double)],
+  good[6 层\ 有电梯#super(dagger)],
   tcell(rowspan: 2, good[层浴]),
   tcell(rowspan: 2)[
     单寝面积略小于雁南
@@ -152,14 +152,14 @@
   female[学 29],
   [硕士研究生\ 博士研究生],
   [8 人套间\ 每室 #good[2 \~ 4] 人],
-  good[普通家用\ 床铺桌椅],
-  neutral[套间独卫],
+  good[普通单层\ 床铺桌椅],
+  neutral[套间\ 卫生间\ （马桶）],
   good[有],
   neutral[20 层\ 2 部电梯],
   good[正常#quest],
   bad[远],
   good[东门柜],
-  bad[远\ #neutral[有独浴]但无热水],
+  bad[远 #v(.25em) #neutral[有套间浴室]\ 但无热水],
   bad[远],
   neutral[中],
   [#quest\ 早于 2003],
@@ -167,10 +167,6 @@
     曾经是家属区的一部分，非典时期被征用为非典塔，后空置直到学校扩招被征用为宿舍；高层曾用作留学生宿舍
 
     只有一楼有热饮用水
-
-    不限电功率
-
-    19 \~ 20 层有燃气供应
   ],
 
   [#female[学 9]\ #female[学 11]],
@@ -256,14 +252,12 @@
 
 
   沙河-cell(body: [沙河校区]),
-  wip[雁南 S2\ 雁南 S3\ 雁南 S4\ 雁南 S5\ （25 级）],
+  [#male[雁南 S2\ 雁南 S3]\ #mixed[雁南 S4]\ #female[雁南 S5]\ #mixed[（25 级）]],
   [本科生\ 硕士研究生\ 博士研究生#quest],
   neutral[6],
   neutral[
-    #show: align.with(left)
-
-    上床上床 \
-    下床#backlink("https://baike.baidu.com/pic/TFBOYS/9083733/0/3c6d55fbb2fb4316390c99072da4462309f7d3b8")[下桌] \
+    床床#hide[#backlink("about:blank")[]] \
+    床#backlink("https://baike.baidu.com/pic/TFBOYS/9083733/0/3c6d55fbb2fb4316390c99072da4462309f7d3b8")[桌] \
   ],
   good[独卫\ +\ 公卫#super(dagger)],
   good[有],
@@ -276,8 +270,6 @@
   [],
   [2016],
   [
-    新生还未分配宿舍，性别分配未知
-
     床位布局难以评价，床铺尺寸不统一
 
     衷心希望新的宿舍楼能够早日建成分担住宿压力，拯救水深火热中的雁南住户
@@ -354,7 +346,7 @@
 #let 表格注 = stack(
   dir: ttb,
   spacing: .5em,
-  [#super(dagger)雁北 D2, E 楼为一个区域，内部部分连通。D2 楼借用 E 楼公卫和层浴浴室，可能需要前往其他楼层。],
+  [#super(dagger)雁北 D2, E 楼为一个区域，内部部分连通，共用电梯。D2 楼借用 E 楼公卫和层浴浴室，可能需要前往其他楼层。],
   [#super(dagger.double)雁北 A, B, C, D1 楼为一个区域，内部部分连通。该区域两部电梯均位于 D1 部分，A, B, C 楼需要借道；A, B 二楼与 A 六楼无法通过电梯到达，需要步行一层。],
 )
 

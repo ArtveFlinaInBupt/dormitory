@@ -18,7 +18,7 @@
   }
 
   #align(center, {
-    text(size: 1.25em)[#datetime.today().display("[year]") 高招季 Special：*本科新生可能需要的信息*]
+    text(size: 1.25em)[#datetime.today().display("[year]") 开学季 Special：*本科新生可能需要的信息*]
     v(-.25em)
   })
 
