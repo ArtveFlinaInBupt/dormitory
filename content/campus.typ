@@ -1,5 +1,5 @@
 #import "/template/util.typ": *
-#import "/template/model.typ": baseline-bias
+#import "/template/model.typ": baseline-bias, backlink
 #import "/template/style.typ": show-body
 
 #import "subway.typ": get-subway
@@ -217,7 +217,7 @@
   本部-cell(),
   [北京市海淀区\ 西土城路 10 号],
   [
-    位于北三环以内，距离二环（西城区）仅 #qty[2][km]。周边有多个商业区。
+    位于北三环以内，距离三环仅 #qty[200][m]，距离二环（西城区）约 #qty[2][km]。周边有多个商业区。
 
     东门与北师大西门仅一街之隔；距法大、央财、电影学院、北航、北大医学部均约 #qty[10][min] 自行车程；北航以北是学院路 8 校。
 
@@ -269,6 +269,8 @@
 #disclaimer
 
 尽量为所有的信息给出来源；规划持续变动，请以实际为准，不要过于依赖本表。
+
+另附：来自学校官网的#backlink("https://www.bupt.edu.cn/bygk/zjby/xydt.htm")[校园地图]
 
 #text(fill: red.darken(25%))[*欢迎新生参考本表内容。*]
 
