@@ -1,7 +1,7 @@
 #let font = (
   serif: ((name: "STIX Two Text", covers: "latin-in-cjk"), "Source Han Serif SC"),
   mono: ("Fira Code",),
-  math: ("STIX Two Math", "STIX Two Text"),
+  math: ("STIX Two Math", "STIX Two Text", "Source Han Serif SC"),
 )
 
 #let baseline-bias = .05em

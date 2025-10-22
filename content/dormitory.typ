@@ -58,14 +58,15 @@
 )
 // @typstyle off
 #let 主体表格 = table(
-  columns: (..(auto,) * 15, 20em),
+  columns: (..(auto,) * 16, 20em),
   inset: .5em,
-  align: (x, y) => if y != 0 and x == 15 { left } else { center },
+  align: (x, y) => if y != 0 and x == 16 { left } else { center },
   table.header(
     tcell(rowspan: 3)[*所在校区*],
     tcell(rowspan: 3)[*宿舍楼*],
     tcell(colspan: 12)[*配置*],
     tcell(rowspan: 3)[*最后装修\ 年份*],
+    tcell(rowspan: 3)[*住宿费#linebreak()#text(size: .7em)[元 / 学年]*],
     tcell(rowspan: 3)[*其他说明*\ #unknown[（欢迎补充）]],
     tcell(rowspan: 2)[住户类型],
     tcell(rowspan: 2)[人数],
@@ -97,6 +98,7 @@
   tcell(rowspan: 5, []),
   tcell(rowspan: 5, []),
   [2020],
+  [1200],
   [
     单独一期工程修建，与 S1 \~ S5 无关
 
@@ -106,11 +108,13 @@
   female[雁南 S5\ 雁南 S4\ （24 级前）],
   good[层浴],
   [2016],
+  [900],
   [由于 S6 不足以装下沙河所有女生，此处仍居住了一部分 2024 级以上的女生，所在宿舍维持原有家具未更换],
 
   [#male[雁北 E]\ #male[雁北 D2]],
   good[层浴，有隔板#super(dagger)],
   tcell(rowspan: 3)[2014],
+  tcell(rowspan: 3)[1200],
   [
     （沙河最初规划中有且仅有女寝浴室有隔板）
 
@@ -125,7 +129,7 @@
   [#male[雁北 B]\ #male[雁北 A]],
   neutral[6 层\ 部分有电梯#super(dagger.double)],
 
-  本部-cell(rowspan: 7, body: [西土城\ 校区\ （校本部）]),
+  本部-cell(rowspan: 8, body: [西土城\ 校区\ （校本部）]),
 
   male[学 13],
   [硕士研究生\ 博士研究生],
@@ -134,18 +138,33 @@
   neutral[公卫],
   [少量房间#good[有]\ 其余为#neutral[假阳台]],
   neutral[5 层\ 无电梯],
-  good[正常#quest],
+  [#bad[移动网络信号奇差]\ （校园网正常）],
   bad[远],
   good[西门柜],
   bad[远\ #wip[楼浴尚未启用]],
   neutral[中],
   bad[远],
   [2025],
-  [
-    曾经的“公主坟”，现状可参考#backlink("https://bbs.byr.cn/#!article/IWhisper/8475595")[北邮人论坛]
-
+  [750],
+  tcell(rowspan: 2)[
     使用沙河雁南换下的家具
   ],
+
+  wip[学 2],
+  quest,
+  good[4],
+  good[上床下桌],
+  neutral[公卫],
+  good[有],
+  neutral[5 层\ 无电梯],
+  good[正常#quest],
+  bad[远],
+  good[西门柜],
+  bad[远\ #wip[层浴尚未启用]],
+  good[近],
+  bad[远],
+  [2025],
+  quest,
 
   female[学 29],
   [硕士研究生\ 博士研究生],
@@ -161,6 +180,7 @@
   bad[远],
   neutral[中],
   [#quest\ 早于 2003],
+  [1020],
   [
     可参考#backlink("https://bbs.byr.cn/#!article/Picture/3377378")[北邮人论坛]
 
@@ -183,6 +203,7 @@
   bad[远],
   bad[远],
   [2024],
+  [750],
   [
     单寝面积很小
   ],
@@ -201,6 +222,7 @@
   neutral[中],
   neutral[中],
   tcell(rowspan: 2, [#quest\ 早于 2001]),
+  [1200],
   tcell(rowspan: 2, [部分房间地漏不可用，楼板渗水，搭配独浴和停水忘关水龙头有奇效]),
   female[学 4\ （博士）],
   [博士研究生],
@@ -209,6 +231,7 @@
   [#neutral[中]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
   neutral[中],
   bad[远],
+  [850],
 
   [#mixed[学 3]\ #male[学 5]],
   [本科生\ 硕士研究生],
@@ -224,6 +247,7 @@
   neutral[中],
   bad[远],
   [2004],
+  [900],
   [
     均摊千人一部电梯，有时等待时间极长
 
@@ -244,6 +268,7 @@
   bad[远],
   neutral[中],
   [2011],
+  [900],
   [
     楼道内通风、采光差
   ],
@@ -267,13 +292,14 @@
   [],
   [],
   [2016],
+  [900],
   [
     床位布局难以评价，床铺尺寸不统一
 
     衷心希望新的宿舍楼能够早日建成分担住宿压力，拯救水深火热中的雁南住户
   ],
 
-  本部-cell(rowspan: 4, body: [西土城\ 校区\ （校本部）]),
+  本部-cell(rowspan: 3, body: [西土城\ 校区\ （校本部）]),
 
   female[学 4\ （本硕）],
   [本科生\ 硕士研究生],
@@ -289,6 +315,7 @@
   neutral[中],
   bad[远],
   [#quest\ 早于 2001],
+  [850],
   [
     单寝面积略大于学 6
 
@@ -311,6 +338,7 @@
   bad[远],
   good[近],
   [2003],
+  [1020],
   [
     少量寝室有新冠时期安装的独浴、热水器遗留，可用性不佳
 
@@ -325,20 +353,16 @@
   good[有],
   neutral[5 层\ 无电梯],
   good[正常#quest],
-  tcell(rowspan: 2, bad[远]),
-  tcell(rowspan: 2, good[西门柜]),
-  tcell(rowspan: 2, bad[远]),
-  tcell(rowspan: 2, good[近]),
-  tcell(rowspan: 2, bad[远]),
+  bad[远],
+  good[西门柜],
+  bad[远],
+  good[近],
+  bad[远],
   [1993],
+  [550],
   [
     有翻修计划，预计将在 2025 年下半年开始
   ],
-
-  wip[学 2],
-  tcell(colspan: 7, wip[正在翻修]),
-  [2025],
-  [],
 )
 
 #let 表格注 = stack(
@@ -352,7 +376,7 @@
 
 #disclaimer
 
-只讨论绝大多数宿舍配置，不讨论占比较少的特种房间。
+表格内只讨论绝大多数宿舍配置，不讨论占比较少的特种房间。
 
 虽然表里有些距离评价是远，但是巴掌大的校园再远能有多远呢？不提供沙河宿舍到教学楼、科研楼的距离评价。
 
@@ -393,4 +417,5 @@
   [- *学 4 10 人间*：], [10 人（5 张上下铺），多个房间，无阳台],
   [- *学 5 10 人间*：], [10 人（5 张上下铺），更大的空间，无阳台],
   [- *学 10 大 6 人间*：], [更大的空间],
+  [- *学 13 有阳台房间*：], [2 人间和 4 人间均有；阳台大小不一，有阳台的房间同时兼有假阳台],
 )

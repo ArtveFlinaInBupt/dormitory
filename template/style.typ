@@ -20,7 +20,12 @@
   set document(author: ("fa_555 <fa_555@foxmail.com>",), date: datetime.today())
 
   set text(font: font.serif, weight: "medium") // 应付 Source Han Serif SC 的偏细字重
-  show regex("[\u4e00-\u9fa5]+"): set text(
+  show regex("[
+    “”
+    \uFF01-\uFF0F\uFF1A-\uFF20\uFF3B-\uFF40\uFF5B-\uFF60
+    \u3000-\u303F
+    \u4E00-\u9FFF
+  ]+"): set text(
     baseline: baseline-bias,
   ) // 应付 Source Han Serif SC 的偏低基线
   set par(leading: .5em, spacing: .85em, justify: true)
