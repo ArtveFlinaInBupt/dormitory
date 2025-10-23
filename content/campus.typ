@@ -272,8 +272,6 @@
 
 另附：来自学校官网的#backlink("https://www.bupt.edu.cn/bygk/zjby/xydt.htm")[校园地图]
 
-#text(fill: red.darken(25%))[*欢迎新生参考本表内容。*]
-
 - 校区简介：
 
   #figure(校区说明表格)
