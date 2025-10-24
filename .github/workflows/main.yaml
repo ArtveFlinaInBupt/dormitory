@@ -29,6 +29,8 @@ jobs:
 
       - name: Install Fontist
         uses: fontist/setup-fontist@v2
+        with:
+          fontist-version: 1.x
 
       - name: Install Fontist Fonts
         run: |
