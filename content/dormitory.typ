@@ -32,10 +32,10 @@
 #let 性别图例 = table(
   inset: (x: 1em),
   table.header()[*性别图例*],
-  male[男寝],
-  female[女寝],
-  mixed[混寝],
-  wip[未知],
+  male[男],
+  female[女],
+  mixed[混合],
+  wip[无住户],
 )
 #let 好坏图例 = table(
   inset: (x: 1em),
@@ -51,7 +51,7 @@
   good[好],
   box(
     width: .1em,
-    height: 69em, // 需在更新表格后手动调整
+    height: 68em, // 需在更新表格后手动调整
     fill: gradient.linear(green, red, angle: 90deg),
   ),
   bad[坏],
@@ -109,7 +109,7 @@
   good[层浴],
   [2016],
   [900],
-  [由于 S6 不足以装下沙河所有女生，此处仍居住了一部分 2024 级以上的女生，所在宿舍维持原有家具未更换],
+  [由于 S6 不足以装下沙河所有女生，此处仍有一部分 2024 级以上的女生居住，对应的房间维持使用原有上床下桌家具],
 
   [#male[雁北 E]\ #male[雁北 D2]],
   good[层浴，有隔板#super(dagger)],
@@ -129,26 +129,28 @@
   [#male[雁北 B]\ #male[雁北 A]],
   neutral[6 层\ 部分有电梯#super(dagger.double)],
 
-  本部-cell(rowspan: 8, body: [西土城\ 校区\ （校本部）]),
+  本部-cell(rowspan: 9, body: [西土城\ 校区\ （校本部）]),
 
-  male[学 13],
-  [硕士研究生\ 博士研究生],
-  [#good[2] 或 #good[4]],
-  tcell(rowspan: 2, good[上床下桌]),
-  tcell(rowspan: 2, neutral[公卫]),
-  [少量房间#good[有]\ 其余为#neutral[假阳台]],
-  neutral[5 层\ 无电梯],
-  [#bad[移动网络信号奇差]\ （校园网正常）],
-  bad[远],
-  good[西门柜],
-  bad[远\ #wip[楼浴尚未启用]],
-  neutral[中],
-  bad[远],
-  [2025],
-  [750],
-  tcell(rowspan: 2)[
+  tcell(rowspan: 2, male[学 13]),
+  [博士研究生],
+  good[2],
+  tcell(rowspan: 3, good[上床下桌]),
+  tcell(rowspan: 3, neutral[公卫]),
+  tcell(rowspan: 2)[少量房间#good[有]\ 其余为#neutral[假阳台]],
+  tcell(rowspan: 2, neutral[5 层\ 无电梯]),
+  tcell(rowspan: 2)[#bad[移动网络信号奇差]\ （校园网正常）],
+  tcell(rowspan: 2, bad[远]),
+  tcell(rowspan: 2, good[西门柜]),
+  tcell(rowspan: 2, bad[远\ #wip[楼浴尚未启用]]),
+  tcell(rowspan: 2, neutral[中]),
+  tcell(rowspan: 2, bad[远]),
+  tcell(rowspan: 2, [2025]),
+  tcell(rowspan: 2, [750]),
+  tcell(rowspan: 3)[
     使用沙河雁南换下的家具
   ],
+  [硕士研究生],
+  good[4],
 
   wip[学 2],
   quest,
@@ -213,7 +215,7 @@
   tcell(rowspan: 2, neutral[独卫]),
   tcell(rowspan: 2, good[有]),
   tcell(rowspan: 2, neutral[12 层\ 2 部电梯]),
-  tcell(rowspan: 2, bad[主楼翻修期间\ 常随机停水]),
+  tcell(rowspan: 2, good[正常#quest]),
   good[近],
   neutral[北门柜],
   [#neutral[近]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
@@ -222,7 +224,7 @@
   tcell(rowspan: 2, [#quest\ 早于 2001]),
   [1200],
   tcell(rowspan: 2, [部分房间地漏不可用，楼板渗水，搭配独浴和停水忘关水龙头有奇效]),
-  female[学 4\ （博士）],
+  female[学 4\ （部分）],
   [博士研究生],
   neutral[中],
   neutral[北门柜\ 西门柜],
@@ -294,19 +296,19 @@
   [
     床位布局难以评价，床铺尺寸不统一
 
-    衷心希望新的宿舍楼能够早日建成分担住宿压力，拯救水深火热中的雁南住户
+    衷心希望新的宿舍楼能够早日建成以分担住宿压力，拯救水深火热中的雁南住户
   ],
 
   本部-cell(rowspan: 3, body: [西土城\ 校区\ （校本部）]),
 
-  female[学 4\ （本硕）],
-  [本科生\ 硕士研究生],
+  female[学 4\ （部分）],
+  [本科生\ 硕士研究生\ 博士研究生],
   neutral[6],
   bad[上下铺],
   neutral[独卫],
   good[有],
   neutral[12 层\ 2 部电梯],
-  bad[主楼翻修期间\ 常随机停水],
+  good[正常#quest],
   neutral[中],
   neutral[北门柜\ 西门柜],
   [#neutral[中]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
@@ -338,8 +340,6 @@
   [2003],
   [1020],
   [
-    少量寝室有新冠时期安装的独浴、热水器遗留，可用性不佳
-
     离经管楼和科研楼近，也许可以……
   ],
 
@@ -350,7 +350,7 @@
   bad[公卫],
   good[有],
   neutral[5 层\ 无电梯],
-  good[正常#quest],
+  bad[五楼卫生间\ 部分时间无水],
   bad[远],
   good[西门柜],
   bad[远],
@@ -374,7 +374,7 @@
 
 #disclaimer
 
-表格内只讨论绝大多数宿舍配置，不讨论占比较少的特种房间。
+表格内只讨论绝大多数宿舍配置，不讨论占比较少的特殊房间。
 
 虽然表里有些距离评价是远，但是巴掌大的校园再远能有多远呢？不提供沙河宿舍到教学楼、科研楼的距离评价。
 
@@ -408,7 +408,9 @@
   )
 }
 
-特种房间不完全列表（仅说明和其他房间不同之处）：
+表中列出的所有#mixed[混寝]宿舍楼中性别混合的最小单位均为*楼层*。也即，不存在同一楼层内男女混住的情况。
+
+特殊房间不完全列表（仅说明和其他房间不同之处）：
 
 #grid(
   columns: 2,
