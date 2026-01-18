@@ -46,16 +46,6 @@
   wip[建设中],
   unknown[待确认\ 或待补充],
 )
-#let 好坏条 = stack(
-  spacing: .5em,
-  good[好],
-  box(
-    width: .1em,
-    height: 68em, // 需在更新表格后手动调整
-    fill: gradient.linear(green, red, angle: 90deg),
-  ),
-  bad[坏],
-)
 // @typstyle off
 #let 主体表格 = table(
   columns: (..(auto,) * 16, 20em),
@@ -368,6 +358,17 @@
   spacing: .5em,
   [#super(dagger)雁北 D2, E 楼为一个区域，内部部分连通，共用电梯。D2 楼借用 E 楼公卫和层浴浴室，可能需要前往其他楼层。],
   [#super(dagger.double)雁北 A, B, C, D1 楼为一个区域，内部部分连通。该区域两部电梯均位于 D1 部分，A, B, C 楼需要借道；A, B 二楼与 A 六楼无法通过电梯到达，需要步行一层。],
+)
+
+#let 好坏条 = stack(
+  spacing: .5em,
+  good[好],
+  context box(
+    width: .1em,
+    height: measure(主体表格).height - 7.5em, // 需在更新表格后手动调整
+    fill: gradient.linear(green, red, angle: 90deg),
+  ),
+  bad[坏],
 )
 
 = 柏油 · 宿舍
