@@ -59,7 +59,7 @@
     tcell(rowspan: 3)[*住宿费#linebreak()#text(size: .7em)[元 / 学年]*],
     tcell(rowspan: 3)[*其他说明*\ #unknown[（欢迎补充）]],
     tcell(rowspan: 2)[住户类型],
-    tcell(rowspan: 2)[人数],
+    tcell(rowspan: 2)[每室人数],
     tcell(rowspan: 2)[家具],
     tcell(rowspan: 2)[卫生间],
     tcell(rowspan: 2)[阳台],
