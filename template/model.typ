@@ -15,7 +15,7 @@
   //   thickness: .5pt,
   // ))
 
-  // walkaround
+  // workaround
   show: box.with(
     outset: (bottom: .25em),
     stroke: (bottom: (paint: colors.link, thickness: .5pt)), // avoid context
