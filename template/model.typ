@@ -19,5 +19,9 @@
     stroke: (bottom: (paint: colors.link, thickness: .5pt)), // avoid context
   )
 
-  link(url, body + " " + text(font: font.mono, weight: "light")[↗️])
+  link(url, {
+    body
+    sym.space.thin
+    text(font: font.mono, weight: "light")[↗️]
+  })
 }
