@@ -1,5 +1,5 @@
 #import "/template/util.typ": *
-#import "/template/model.typ": baseline-bias, backlink
+#import "/template/model.typ": backlink
 #import "/template/style.typ": show-body
 
 #import "subway.typ": get-subway

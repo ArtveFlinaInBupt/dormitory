@@ -4,8 +4,6 @@
   math: ("STIX Two Math", "STIX Two Text", "Source Han Serif SC"),
 )
 
-#let baseline-bias = .05em
-
 #let colors = (link: blue)
 
 #let stroke = (paint: luma(50%), thickness: .75pt)

@@ -39,20 +39,11 @@
     item.foreground = white
   }
 
-  let y-offset = .25em
-
   box(
     fill: item.background,
     inset: (x: .15em),
-    outset: if item.cjk {
-      (
-        top: y-offset - baseline-bias,
-        bottom: y-offset + baseline-bias,
-      )
-    } else {
-      (y: y-offset)
-    }, // 处理思源字体导致的 baseline 问题
+    outset: (y: .25em),
     radius: .25em,
-    text(fill: item.foreground, weight: "regular", item.name),
+    text(fill: item.foreground, item.name),
   )
 }
