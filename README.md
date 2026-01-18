@@ -14,7 +14,7 @@
 
 ### 依赖
 
-- [Typst](https://github.com/typst/typst) 0.14.0
+- [Typst](https://github.com/typst/typst) 0.14.2
 - GNU Make
 - 字体
   - 简体中文字体：[思源宋体 (Source Han Serif SC)](https://github.com/adobe-fonts/source-han-serif)
@@ -31,14 +31,14 @@ make lang=zh
 # 所有产物会在 `out/` 目录下
 ```
 
-### 可能的问题
-
-- （上游已修复）~~预览水印成为不相关的文字~~
-  - ~~参见 [typst/typst Issue #5428](https://github.com/typst/typst/issues/5428)~~
-  - ~~该问题[已修复](https://github.com/typst/typst/issues/5428)，可以自行编译最新的 Typst in development 使用，或忍着静待 Typst 发布新版本。~~
+### FAQ
 
 - 为什么只用宋体？太细了看着不舒服！
-  - 我们难以解决与思源黑体协调的美观的西文非衬线体的使用许可问题。若您有好的解决方案，欢迎在 Issues 中提出。
+  1. 我们难以解决与思源黑体协调的美观的西文非衬线体的使用许可问题；
+  2. 作者喜欢宋体。
+
+- 为什么没有海南校区的宿舍信息？
+  - 目前没有可靠的信息来源。若您能调研得到完整可靠信息，欢迎提供。
 
 ## 其他
 
