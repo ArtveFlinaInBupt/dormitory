@@ -25,7 +25,7 @@ jobs:
       - name: Install Typst
         uses: typst-community/setup-typst@v4
         with:
-          typst-version: 0.14.0
+          typst-version: 0.14.2
 
       - name: Install Fontist
         uses: fontist/setup-fontist@v2
