@@ -9,3 +9,5 @@
 #let num = num => $#num$
 #let unit = unit => $upright(#unit)$
 #let qty = (num, unit) => $#num thin upright(#unit)$
+
+#let subtable(..args) = tcell(inset: 0pt, table(align: left + horizon, ..args))

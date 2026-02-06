@@ -17,21 +17,21 @@
     name: "信息与通信工程学院",
     code: 311,
     count: 2,
-    dept: "本部",
+    dept: ("本部", "教二"),
     source: [23 级大三前回迁],
   ),
   (
     name: "电子工程学院",
     code: 312,
     count: 2,
-    dept: "本部",
+    dept: ("本部", "教四"),
     source: [23 级大三前回迁],
   ),
   (
     name: "计算机学院（国家示范性软件学院）",
     code: 313,
     count: 2,
-    dept: none,
+    dept: ("本部", "教三"),
     source: [
       23 级大二前回迁 \
       24 级大二前未回迁 \
@@ -44,7 +44,7 @@
     name: "数字媒体与设计艺术学院",
     code: 316,
     count: 5,
-    dept: "沙河",
+    dept: ("沙河", "数媒楼"),
     source: [21 级毕业前未曾回迁],
   ),
   // 邮政院 317 RIP
@@ -52,14 +52,14 @@
     name: "网络空间安全学院",
     code: 318,
     count: 5,
-    dept: "沙河",
+    dept: ("沙河", "网安楼"),
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "经济管理学院",
     code: 321,
     count: 1,
-    dept: "本部",
+    dept: ("本部", "经管楼"),
     source: [24 级大二前回迁],
   ),
   (
@@ -72,14 +72,14 @@
       沙河-cell(),
       沙河-cell(),
     ),
-    dept: "沙河",
+    dept: ("沙河", "S2"),
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "马克思主义学院",
     code: 332,
     fill: (..(invalid-cell(),) * 4, 沙河-cell()),
-    dept: "沙河",
+    dept: ("沙河", "S2"),
     source: [],
   ),
   // 理学院 341 RIP
@@ -87,7 +87,7 @@
     name: "国际学院",
     code: 351,
     count: (1, 3),
-    dept: "本部",
+    dept: ("本部", "国院楼"),
     source: [24 级大二前回迁],
   ),
   (
@@ -106,7 +106,7 @@
     name: "集成电路学院",
     code: 379,
     count: 2,
-    dept: "本部",
+    dept: ("本部", "学发"),
     source: [23 级大三前回迁],
   ),
   (
@@ -121,28 +121,35 @@
     name: "智能工程与自动化学院",
     code: 386,
     count: 5,
-    dept: "沙河",
+    dept: ("沙河", "智工楼"),
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "数学科学学院",
     code: 387,
     count: 5,
-    dept: "沙河",
+    dept: ("沙河", "理学楼"),
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "物理科学与技术学院",
     code: 388,
     count: 5,
-    dept: "沙河",
+    dept: ("沙河", "理学楼"),
     source: [21 级毕业前未曾回迁],
   ),
   (
     name: "人工智能学院",
     code: 391,
     count: 2,
+    dept: ("本部", "创新楼"),
     source: [23 级大三前回迁],
+  ),
+  (
+    name: "密码学院",
+    code: "???",
+    fill: (..(invalid-cell(),) * 5,),
+    source: none,
   ),
   // (
   //   name: "",
@@ -160,18 +167,14 @@
   (..(沙河-cell(),) * 沙河-count, ..(本部-cell(),) * 本部-count, ..(invalid-cell(),) * 空-count)
 }
 
-#let dept-building(key) = {
-  let default = tcell[]
-
-  if key == none { default } else {
-    (
-      "沙": 沙河-cell(),
-      "沙河": 沙河-cell(),
-      "本": 本部-cell(),
-      "本部": 本部-cell(),
-    ).at(key, default: default)
-  }
+#let dept-building(dept) = if dept.len() == 0 { tcell[] } else {
+  assert(dept.len() == 2)
+  let (campus, building) = dept
+  ("沙": 沙河-cell, "沙河": 沙河-cell, "本": 本部-cell, "本部": 本部-cell).at(campus)(
+    body: building,
+  )
 }
+
 
 #let gen-row-data(row) = {
   let fill = if "count" in row.keys() {
@@ -191,40 +194,46 @@
   (
     [(#row.code) #row.name],
     ..fill,
-    dept-building(row.at("dept", default: none)),
+    dept-building(row.at("dept", default: ())),
     row.source,
   )
 }
 
 #let 校区说明表格 = table(
-  columns: (auto, auto, auto, 24em),
+  columns: (auto, auto, auto, 30em),
   align: (x, y) => if x == 3 and y != 0 { left } else { center } + horizon,
-  table.header()[*校区名称*][*图例*][*地址*][*简介与周边*],
-
-  [沙河校区],
-  沙河-cell(),
-  [北京市昌平区\ 沙河高教园区],
-  [
-    位于沙河高教园，附近有外交学院、北航、北师大、央财等众多高校的沙河校区，外来人口众多。
-
-    距地铁#get-subway(27)沙河站、沙河高教园站均短于 #qty[1][km]。
-
-    近年新修建，生活环境较优渥，但周边稍显荒凉。
-
-    #text(fill: 沙河-colour.foreground)[沙河校区]和#text(fill: 本部-colour.foreground)[西土城校区]之间单程乘地铁（含前往地铁站）约 #qty[1][h]，乘免费校车约 #qty[40][min]。
-  ],
+  table.header[*校区名称*][*图例*][*地址*][*介绍*],
 
   [西土城校区\ （校本部）],
   本部-cell(),
   [北京市海淀区\ 西土城路 10 号],
-  [
-    位于三环以内，距北三环（蓟门桥）仅约 #qty[200][m]，距二环（铁路北京北站）约 #qty[2][km]。周边有多个商圈。
+  subtable[
+    自 1955 年建校以来的主校区，位于北京城区，交通十分便利。
 
-    与北师大仅一街之隔；距北航、央财、交大、法大、电影学院、北大医学部（北医三院）均短于 #qty[3][km]；北航以北是学院路 8 校。
+    近几年正在大力活跃翻修——这一点从本文件前一页内容的快速迭代即可见一斑。
+  ][
+    位于三环以内，距北三环（蓟门桥）仅约 #qty[200][m]，距二环（铁路北京北站）约 #qty[2][km]。周边有超多商圈。
+
+    与北师大仅一街之隔；距北航、央财、交大、法大、电影学院、北大医学部（北医三院）*等*均短于 #qty[3][km]；北航以北是学院路 8 校。
 
     距字节跳动（抖音）总部约 #qty[1.5][km]，距中关村核心区约 #qty[5][km]。
 
-    距地铁蓟门桥站约 #qty[200][m]，距地铁北太平庄站、西土城站、大钟寺站、四道口站（在建）均短于 #qty[1.5][km]，涉及地铁 #get-subway(10), #get-subway(12), #get-subway(13), #get-subway(19), #get-subway(27)，线路优质，出行便利。
+    距地铁蓟门桥站约 #qty[200][m]，距地铁北太平庄站、西土城站、大钟寺站、四道口站（在建）均短于 #qty[1.5][km]，涉及地铁 #get-subway(10), #get-subway(12), #get-subway(13), #get-subway(19), #get-subway(27)，线路非常优质。
+  ],
+
+  [沙河校区],
+  沙河-cell(),
+  [北京市昌平区\ 沙河高教园区],
+  subtable[
+    2018 年起全面投入使用的新校区，位于北京郊区，生活环境较优渥。
+
+    本校区与周边其他大学的校园都在活跃建设中。
+  ][
+    周边稍显荒凉，外来人口众多，主要为居民区，以及外交学院、北航、北师大、央财等众多高校的沙河校区，也有少量商圈。
+
+    距地铁#get-subway(27)沙河站、沙河高教园站均短于 #qty[1][km]。
+
+    #沙河-styled[沙河校区]和#本部-styled[西土城校区]之间单程乘地铁约 #qty[1][h] 许（列车运行 #qty[40][min]），乘免费班车最快约 #qty[35][min]，实际耗时可能因路况增加。
   ],
 
   [海南校区],
@@ -239,12 +248,9 @@
   [宏福校区],
   [],
   secondary[北京市昌平区\ 北七家镇郑各庄村],
-  [已不再承载普通全日制学生教学与生活活动。高考志愿中出现宏福校区字样的同学入学应前往#text(fill: 沙河-colour.foreground)[沙河校区]。],
+  [已不再承载普通全日制学生教学与生活活动。高考志愿中出现宏福校区字样的同学入学应前往#沙河-styled[沙河校区]。],
 
-  [小西天校区],
-  [],
-  secondary[北京市西城区\ 新街口外大街28号],
-  [仅有少量家属公寓楼。],
+  [小西天校区], [], secondary[北京市西城区\ 新街口外大街28号], [不承载普通全日制学生教学与生活活动，有少量家属公寓楼。],
 )
 
 #let 详表 = align(
@@ -267,7 +273,7 @@
       ),
       ..data.map(gen-row-data).flatten(),
     ),
-    [#super(dagger)曾经所有沙河校区的研究生须在毕业年级回迁本部，但自 2025 年起似乎不再有该要求。#active[有活跃异动，未稳定]],
+    [#super(dagger)曾经所有#沙河-styled[沙河校区]的研究生须在毕业年级回迁#本部-styled[本部]，但自 2025 年起似乎不再有该要求。#active[有活跃异动，未稳定]],
     [#super(dagger.double)人文学院法学专业联培学生大三学年前往中国政法大学参与联合培养。],
   ),
 )
@@ -288,8 +294,8 @@
 
   目前，学校遵循的分配策略为：
 
-  - 所有本科新生都在沙河；
-  - 本科生以学院为单位可能在某个时间点后回迁本部；
+  - 所有（位于北京的）本科新生都在#沙河-styled[沙河校区]；
+  - 本科生以学院为单位可能在某个时间点后回迁#本部-styled[本部]；
   - 研究生以学院为单位倾向于分配在同一校区#super(dagger)。
 
   #figure(详表)
