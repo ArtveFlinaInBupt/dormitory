@@ -78,7 +78,7 @@
   tcell(rowspan: 5, [本科生\ 硕士研究生\ 博士研究生]),
   tcell(rowspan: 5, good[4]),
   tcell(rowspan: 5, good[上床下桌]),
-  tcell(rowspan: 5, good[独卫\ +\ 公卫#super(dagger)]),
+  tcell(rowspan: 5, good[独卫\ +\ 公卫#fn(1)]),
   tcell(rowspan: 5, good[有]),
   tcell(rowspan: 3, good[6 层\ 有电梯]),
   tcell(rowspan: 5, good[正常]),
@@ -102,7 +102,7 @@
   [由于 S6 不足以装下沙河所有女生，此处仍有一部分 2024 级以上的女生居住，对应的房间维持使用原有上床下桌家具],
 
   [#male[雁北 E]\ #male[雁北 D2]],
-  good[层浴，有隔板#super(dagger)],
+  good[层浴，有隔板#fn(1)],
   tcell(rowspan: 3)[2014],
   tcell(rowspan: 3)[1200],
   [
@@ -111,13 +111,13 @@
     在 S6 没建好时曾经是女寝，改男寝后浴室隔板没拆
   ],
   [#male[雁北 D1]\ #male[雁北 C]],
-  good[6 层\ 有电梯#super(dagger)],
+  good[6 层\ 有电梯#fn(1)],
   tcell(rowspan: 2, good[层浴]),
   tcell(rowspan: 2)[
     单寝面积略小于雁南
   ],
   [#male[雁北 B]\ #male[雁北 A]],
-  neutral[6 层\ 部分有电梯#super(dagger.double)],
+  neutral[6 层\ 部分有电梯#fn(2)],
 
   本部-cell(rowspan: 9, body: [西土城\ 校区\ （校本部）]),
 
@@ -272,7 +272,7 @@
     床床#hide[#backlink("about:blank")[]] \
     床#backlink("https://baike.baidu.com/pic/TFBOYS/9083733/0/3c6d55fbb2fb4316390c99072da4462309f7d3b8")[桌] \
   ],
-  good[独卫\ +\ 公卫#super(dagger)],
+  good[独卫\ +\ 公卫#fn(1)],
   good[有],
   good[6 层\ 有电梯],
   good[正常],
@@ -356,8 +356,8 @@
 #let 表格注 = stack(
   dir: ttb,
   spacing: .5em,
-  [#super(dagger)雁北 D2, E 楼为一个区域，内部部分连通，共用电梯。D2 楼借用 E 楼公卫和层浴浴室，可能需要前往其他楼层。],
-  [#super(dagger.double)雁北 A, B, C, D1 楼为一个区域，内部部分连通。该区域两部电梯均位于 D1 部分，A, B, C 楼需要借道；A, B 二楼与 A 六楼无法通过电梯到达，需要步行一层。],
+  [#fn(1)雁北 D2, E 楼为一个区域，内部部分连通，共用电梯。D2 楼借用 E 楼公卫和层浴浴室，可能需要前往其他楼层。],
+  [#fn(2)雁北 A, B, C, D1 楼为一个区域，内部部分连通。该区域两部电梯均位于 D1 部分，A, B, C 楼需要借道；A, B 二楼与 A 六楼无法通过电梯到达，需要步行一层。],
 )
 
 #let 好坏条 = stack(

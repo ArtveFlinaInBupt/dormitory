@@ -68,7 +68,7 @@
     fill: (
       沙河-cell(),
       沙河-cell(),
-      沙河-cell(body: [沙#super(dagger.double)]),
+      沙河-cell(body: [沙#fn(2)]),
       沙河-cell(),
       沙河-cell(),
     ),
@@ -268,13 +268,13 @@
         tcell(rowspan: 3)[*校区*\ （学院楼）],
         tcell(rowspan: 3)[*信息来源*],
         tcell(colspan: 4)[本科生],
-        tcell(rowspan: 2)[研究生#super(dagger)],
+        tcell(rowspan: 2)[研究生#fn(1)],
         [大一], [大二], [大三], [大四],
       ),
       ..data.map(gen-row-data).flatten(),
     ),
-    [#super(dagger)曾经所有#沙河-styled[沙河校区]的研究生须在毕业年级回迁#本部-styled[本部]，但自 2025 年起似乎不再有该要求。#active[有活跃异动，未稳定]],
-    [#super(dagger.double)人文学院法学专业联培学生大三学年前往中国政法大学参与联合培养。],
+    [#fn(1)曾经所有#沙河-styled[沙河校区]的研究生须在毕业年级回迁#本部-styled[本部]，但自 2025 年起似乎不再有该要求。#active[有活跃异动，未稳定]],
+    [#fn(2)人文学院法学专业联培学生大三学年前往中国政法大学参与联合培养。],
   ),
 )
 
@@ -296,6 +296,6 @@
 
   - 所有（位于北京的）本科新生都在#沙河-styled[沙河校区]；
   - 本科生以学院为单位可能在某个时间点后回迁#本部-styled[本部]；
-  - 研究生以学院为单位倾向于分配在同一校区#super(dagger)。
+  - 研究生以学院为单位倾向于分配在同一校区#fn(1)。
 
   #figure(详表)
