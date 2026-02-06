@@ -11,3 +11,15 @@
 #let qty = (num, unit) => $#num thin upright(#unit)$
 
 #let subtable(..args) = tcell(inset: 0pt, table(align: left + horizon, ..args))
+
+#let proper = {
+  let thickness = .25em
+  let paint = luma(85%)
+
+  underline.with(
+    offset: -thickness / 2 + .125em,
+    background: true,
+    evade: false,
+    stroke: (thickness: thickness, paint: paint),
+  )
+}
