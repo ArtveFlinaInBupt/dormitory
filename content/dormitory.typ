@@ -23,8 +23,6 @@
 
 #let quest = unknown[?]
 
-#let dorm = tcell.with(x: 1)
-
 #let 性别图例 = table(
   inset: (x: 1em),
   table.header[*性别图例*],
@@ -42,315 +40,457 @@
   wip[建设中],
   unknown[待确认\ 或待补充],
 )
-// @typstyle off
-#let 主体表格 = table(
-  columns: (..(auto,) * 16, 20em),
-  align: (x, y) => if y != 0 and x == 16 { left } else { center },
-  table.header(
-    tcell(rowspan: 3)[*所在校区*],
-    tcell(rowspan: 3)[*宿舍楼*],
-    tcell(colspan: 12)[*配置*],
-    tcell(rowspan: 3)[*最后装修\ 年份*],
-    tcell(rowspan: 3)[*住宿费\ #text(size: .7em)[元 / 学年]*],
-    tcell(rowspan: 3)[*其他说明*\ #unknown[（欢迎补充）]],
-    tcell(rowspan: 2)[近 5 年\ 住户类型],
-    tcell(rowspan: 2)[每室人数\ #text(size: .7em)[括号内为床位数]],
-    tcell(rowspan: 2)[家具],
-    tcell(rowspan: 2)[卫生间#fn(4)],
-    tcell(rowspan: 2)[阳台],
-    tcell(rowspan: 2)[楼层 / 电梯],
-    tcell(rowspan: 2)[水电网供应],
-    tcell(colspan: 5)[距离],
-    [快递站],
-    [外卖柜],
-    [浴室楼 / 浴室],
-    [教学楼群],
-    [科研楼],
-  ),
 
-  沙河-cell(x: 0, rowspan: 6, body: [沙河校区]),
+#let 主体表格 = {
+  let all-columns = (
+    校区: (required: false),
+    楼名: (meta: true),
+    住户: (:),
+    人数: (:),
+    家具: (:),
+    卫生间: (:),
+    阳台: (:),
+    楼层: (:),
+    水电网: (:),
+    快递站: (:),
+    外卖柜: (:),
+    浴室: (:),
+    教学楼: (:),
+    科研楼: (:),
+    装修年份: (:),
+    住宿费: (:),
+    说明: (align: left + horizon, width: 20em, meta: true),
+  )
+    .pairs()
+    .enumerate()
+    .map(((i, (k, v))) => (
+      k,
+      (x: i, required: true, width: auto, align: center + horizon, meta: false, ..v),
+    ))
+    .to-dict()
 
-  dorm(wip[研究生楼]),
-  tcell(colspan: 14, quest),
-  [
-    大概率下学期将投入使用，猜测内部环境与学 13 类似，也有 2 人间与 4 人间
+  let dorm-name-cell = tcell.with(x: all-columns.楼名.x)
+  let description-cell = tcell.with(x: all-columns.说明.x)
 
-    由于多方因素，研究生楼建成伊始可能实际上会交给 2026 级本研新生居住
-  ],
+  let wip-dormitory(name: [], description: []) = (
+    dorm-name-cell(wip(name)),
+    tcell(
+      colspan: all-columns.len() - all-columns.filter(it => not it.required or it.meta).len(),
+      quest,
+    ),
+    description-cell(description),
+  )
 
-  dorm(female[雁南 S6]),
-  tcell(rowspan: 5, [本硕博]),
-  good[4],
-  good[上床下桌],
-  tcell(rowspan: 5, good[独卫\ +\ 公卫#fn(2)#fn(3)]),
-  tcell(rowspan: 5, good[有]),
-  tcell(rowspan: 3, good[6 层\ 有电梯]),
-  tcell(rowspan: 5, good[正常]),
-  tcell(rowspan: 5, bad[远]),
-  tcell(rowspan: 5, bad[小南门柜]),
-  tcell(rowspan: 5, good[层浴#fn(2)]),
-  tcell(rowspan: 5, []),
-  tcell(rowspan: 5, []),
-  [2020],
-  [1200],
-  [
-    单独一期工程修建，与 S1 \~ S5 无关
+  let dormitory(rows: 1, columns) = {
+    assert.eq(type(columns), dictionary, message: "dormitory() expects a dictionary of columns")
 
-    单寝面积大于其他宿舍楼，家具也更好
-  ],
+    let required-columns = all-columns.filter(it => it.required).keys()
+    assert.eq(columns.keys(), required-columns, message: {
+      "dormitory() missing or extra columns, require "
+      repr(required-columns)
+      ", got"
+      repr(columns.keys())
+    })
 
-  dorm[#female[雁南 S5]\ #mixed[雁南 S4#fn(5)]\ #male[雁南 S3\ 雁南 S2]],
-  subtable(rows: (2em, 3em), columns: 6.5em, align: center, good[4], neutral[5 (6) 或 6]),
-  subtable(rows: (2em, 3em), columns: 6.5em, align: center, good[上床下桌], neutral[
-    床床#hide[#backlink("about:blank")[]] \
-    床#backlink("https://baike.baidu.com/pic/TFBOYS/9083733/0/3c6d55fbb2fb4316390c99072da4462309f7d3b8")[桌] \
-  ],),
-  [2016],
-  [1200#quest],
-  [
-    经历过临时 4 改 6 又改 4 的#ruby[瞎折腾][风波]，目前保留的非 4 人间多为原寝主动选择维持原样
-  ],
+    let into-canonical = it => if type(it) == dictionary and it.keys() == ("rows", "body") {
+      it
+    } else {
+      (rows: 1, body: it)
+    }
 
-  dorm[#male[雁北 E]\ #male[雁北 D2]],
-  tcell(rowspan: 3, good[4]),
-  tcell(rowspan: 3, good[上床下桌]),
-  tcell(rowspan: 3)[2014],
-  tcell(rowspan: 3)[1200],
-  tcell(rowspan: 3)[
-    单寝面积略小于雁南
-  ],
-  [#male[雁北 D1]\ #male[雁北 C]],
-  good[6 层\ 有电梯#fn(3)],
-  [#male[雁北 B]\ #male[雁北 A]],
-  neutral[6 层\ 部分有电梯#fn(3)],
+    columns
+      .pairs()
+      .map(((k, v)) => {
+        v = if type(v) != array { (v,) } else { v }.map(into-canonical)
+        v.last().rows += rows - v.fold(0, (acc, v) => acc + v.rows)
+        v.map(it => tcell(x: all-columns.at(k).x, rowspan: it.rows, it.body))
+      })
+      .flatten()
+  }
 
-  本部-cell(rowspan: 13, body: [西土城\ 校区\ （校本部）]),
+  table(
+    columns: all-columns.values().map(it => it.width),
+    align: (x, y) => if y == 0 { center + horizon } else { all-columns.values().at(x).align },
+    table.header(
+      tcell(rowspan: 3)[*所在校区*],
+      tcell(rowspan: 3)[*宿舍楼*],
+      tcell(colspan: 12)[*配置*],
+      tcell(rowspan: 3)[*最后装修\ 年份*],
+      tcell(rowspan: 3)[*住宿费\ #text(size: .7em)[元 / 学年]*],
+      tcell(rowspan: 3)[*其他说明*\ #unknown[（欢迎补充）]],
 
-  dorm(male[学 13\ （2 人间）]),
-  [  博],
-  good[2],
-  good[上床下桌],
-  neutral[公卫],
-  [仅有#neutral[假阳台]],
-  neutral[5 层\ 无电梯],
-  [#bad[蜂窝信号奇差]\ （校园网正常）],
-  bad[远],
-  good[西门柜],
-  bad[远\ #wip[楼浴尚未启用]],
-  neutral[中],
-  bad[远],
-  [2025],
-  [750],
-  [
-    使用沙河雁南换下的家具
-  ],
+      tcell(rowspan: 2)[近 5 年\ 住户类型],
+      tcell(rowspan: 2)[每室人数\ #text(size: .7em)[括号内为床位数]],
+      tcell(rowspan: 2)[家具],
+      tcell(rowspan: 2)[卫生间#fn(4)],
+      tcell(rowspan: 2)[阳台],
+      tcell(rowspan: 2)[楼层 / 电梯],
+      tcell(rowspan: 2)[水电网供应],
+      tcell(colspan: 5)[距离],
+      [快递站],
+      [外卖柜],
+      [浴室楼 / 浴室],
+      [教学楼群],
+      [科研楼],
+    ),
 
-  dorm(wip[学 1]),
-  tcell(colspan: 14, quest),
-  [
-    即将进行翻修，猜测翻修后与学 2 完全相同（它们翻修前就完全相同）
-  ],
+    沙河-cell(x: all-columns.校区.x, rowspan: 6, body: [沙河校区]),
 
-  dorm(wip[学 2]),
-  quest,
-  tcell(rowspan: 2, good[4]),
-  tcell(rowspan: 2, good[上床下桌]),
-  tcell(rowspan: 2, neutral[公卫]),
-  good[有],
-  tcell(rowspan: 2, neutral[5 层\ 无电梯]),
-  good[正常#quest],
-  bad[远],
-  good[西门柜],
-  bad[远\ #wip[层浴尚未启用]],
-  good[近],
-  bad[远],
-  tcell(rowspan: 2, [2025]),
-  quest,
-  tcell(rowspan: 2)[
-    使用沙河雁南换下的家具
-  ],
+    ..wip-dormitory(
+      name: [研究生楼],
+      description: [
+        大概率下学期将投入使用，猜测内部环境与学 13 类似，也有 2 人间与 4 人间
 
-  dorm(male[学 13\ （4 人间）]),
-  [ 硕 ],
-  [仅有#neutral[假阳台]],
-  [#bad[蜂窝信号奇差]\ （校园网正常）],
-  bad[远],
-  good[西门柜],
-  bad[远\ #wip[楼浴尚未启用]],
-  neutral[中],
-  bad[远],
-  [750],
+        由于多方因素，研究生楼建成伊始可能实际上会交给 2026 级本研新生居住
+      ],
+    ),
 
-  dorm(female[学 29]),
-  [#ruby[仅元][本]硕博],
-  [8 人套间\ 每室 #good[2 \~ 4] 人],
-  good[普通单层\ 床铺桌椅],
-  neutral[套间\ 卫生间\ （坐便）],
-  good[有],
-  neutral[20 层\ 2 部电梯],
-  good[正常#quest],
-  bad[远],
-  good[东门柜],
-  bad[远 #v(.25em) #neutral[有套间浴室]\ 但无热水],
-  bad[远],
-  neutral[中],
-  [#quest\ 早于 2003],
-  [1020],
-  [
-    可参考#backlink("https://bbs.byr.cn/#!article/Picture/3377378")[北邮人论坛]
+    ..dormitory(rows: 5, (
+      楼名: (
+        female[雁南 S6],
+        [#female[雁南 S5]\ #mixed[雁南 S4#fn(5)]\ #male[雁南 S3\ 雁南 S2]],
+        [#male[雁北 E]\ #male[雁北 D2]],
+        [#male[雁北 D1]\ #male[雁北 C]],
+        [#male[雁北 B]\ #male[雁北 A]],
+      ),
+      住户: [本硕博],
+      人数: (
+        good[4],
+        [#good[4]\ #neutral[5 (6)], #neutral[6]],
+        (rows: 3, body: good[4]),
+      ),
+      家具: (
+        good[上床下桌],
+        [
+          #good[上床下桌] \
+          #neutral[
+            床床#hide[#backlink("about:blank")[]] \
+            床#backlink("https://baike.baidu.com/pic/TFBOYS/9083733/0/3c6d55fbb2fb4316390c99072da4462309f7d3b8")[桌] \
+          ]
+        ],
+        (rows: 3, body: good[上床下桌]),
+      ),
+      卫生间: good[独卫\ +\ 公卫#fn(2)#fn(3)],
+      阳台: good[有],
+      楼层: (
+        (rows: 3, body: good[6 层\ 有电梯]),
+        good[6 层\ 有电梯#fn(3)],
+        neutral[6 层\ 部分有电梯#fn(3)],
+      ),
+      水电网: good[正常],
+      快递站: bad[远],
+      外卖柜: bad[小南门柜],
+      浴室: good[层浴#fn(2)],
+      教学楼: [],
+      科研楼: [],
+      装修年份: ([2020], [2016], (rows: 3, body: [2014])),
+      住宿费: ([1200], [1200#quest], (rows: 3, body: [1200])),
+      说明: (
+        [
+          单独一期工程修建，与 S1 \~ S5 无关
 
-    曾经是家属区眷 29 楼，非典时期被征用为非典塔，后空置直到学校扩招被征用为宿舍；高层曾用作留学生宿舍
+          单寝面积大于其他宿舍楼，家具也更好
+        ],
+        [
+          经历过临时 4 改 6 又改 4 的#ruby[瞎折腾][风波]，目前保留的非 4 人间多为原寝主动选择维持原样
+        ],
+        (
+          rows: 3,
+          body: [
+            单寝面积略小于雁南
+          ],
+        ),
+      ),
+    )),
 
-    只有一楼有热饮用水
-  ],
+    本部-cell(
+      x: all-columns.校区.x,
+      rowspan: 13,
+      body: [西土城\ 校区\ （校本部）],
+    ),
 
-  dorm[#female[学 9]\ #female[学 11]],
-  [本  ],
-  good[4],
-  good[上床下桌],
-  neutral[公卫],
-  bad[无],
-  neutral[5 层\ 无电梯],
-  bad[凌晨停冲厕中水],
-  good[近],
-  good[北门柜],
-  neutral[中\ #wip[层浴尚未启用]],
-  bad[远],
-  bad[远],
-  [2024],
-  [750],
-  [
-    单寝面积很小
-  ],
+    ..dormitory((
+      楼名: male[学 13\ （2 人间）],
+      住户: [  博],
+      人数: good[2],
+      家具: good[上床下桌],
+      卫生间: neutral[公卫],
+      阳台: [仅有#neutral[假阳台]],
+      楼层: neutral[5 层\ 无电梯],
+      水电网: [#bad[蜂窝信号奇差]\ （校园网正常）],
+      快递站: bad[远],
+      外卖柜: good[西门柜],
+      浴室: bad[远\ #wip[楼浴尚未启用]],
+      教学楼: neutral[中],
+      科研楼: bad[远],
+      装修年份: [2025],
+      住宿费: [750],
+      说明: [
+        使用沙河雁南换下的家具
+      ],
+    )),
 
-  dorm(mixed[学 8]),
-  [#ruby[仅元][本] 博],
-  tcell(rowspan: 2, good[4]),
-  tcell(rowspan: 2, good[上床下桌]),
-  tcell(rowspan: 2, neutral[独卫]),
-  tcell(rowspan: 2, good[有]),
-  tcell(rowspan: 2, neutral[12 层\ 2 部电梯]),
-  tcell(rowspan: 2, good[正常#quest]),
-  good[近],
-  neutral[北门柜],
-  [#neutral[近]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
-  neutral[中],
-  neutral[中],
-  tcell(rowspan: 2, [#quest\ 早于 2001]),
-  [1200],
-  tcell(rowspan: 2, [
-    部分房间地漏不可用，楼板渗水，搭配独浴和停水忘关水龙头有奇效
-  ]),
-  dorm(female[学 4\ （4 人间）]),
-  [  博],
-  neutral[中],
-  neutral[北门柜\ 西门柜],
-  [#neutral[中]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
-  neutral[中],
-  bad[远],
-  [850],
+    ..wip-dormitory(
+      name: [学 1],
+      description: [
+        即将进行翻修，猜测翻修后与学 2 完全相同（它们翻修前就完全相同）
+      ],
+    ),
 
-  dorm[#mixed[学 3]\ #male[学 5]],
-  [#male[本]硕 ],
-  neutral[6],
-  good[上床下桌],
-  bad[公卫],
-  good[有],
-  bad[15 层\ 2 部电梯],
-  bad[凌晨停冲厕中水],
-  neutral[中],
-  neutral[北门柜\ 西门柜],
-  neutral[中],
-  neutral[中],
-  bad[远],
-  [2004],
-  [900],
-  [
-    均摊千人一部电梯，有时等待时间极长
+    ..dormitory(rows: 2, (
+      楼名: (
+        wip[学 2],
+        male[学 13\ （4 人间）],
+      ),
+      住户: (
+        quest,
+        [ 硕 ],
+      ),
+      人数: good[4],
+      家具: good[上床下桌],
+      卫生间: neutral[公卫],
+      阳台: (
+        good[有],
+        [仅有#neutral[假阳台]],
+      ),
+      楼层: neutral[5 层\ 无电梯],
+      水电网: (
+        good[正常#quest],
+        [#bad[蜂窝信号奇差]\ （校园网正常）],
+      ),
+      快递站: (
+        bad[远],
+        bad[远],
+      ),
+      外卖柜: (
+        good[西门柜],
+        good[西门柜],
+      ),
+      浴室: (
+        bad[远\ #wip[层浴尚未启用]],
+        bad[远\ #wip[楼浴尚未启用]],
+      ),
+      教学楼: (
+        good[近],
+        neutral[中],
+      ),
+      科研楼: (
+        bad[远],
+        bad[远],
+      ),
+      装修年份: [2025],
+      住宿费: (
+        quest,
+        [750],
+      ),
+      说明: [
+        使用沙河雁南换下的家具
+      ],
+    )),
 
-    除一楼和顶楼外层高很低，床上难以坐直
-  ],
+    ..dormitory((
+      楼名: female[学 29],
+      住户: [#ruby[仅元][本]硕博],
+      人数: [8 人套间\ 每室 #good[2 \~ 4] 人],
+      家具: good[普通单层\ 床铺桌椅],
+      卫生间: neutral[套间\ 卫生间\ （坐便）],
+      阳台: good[有],
+      楼层: neutral[20 层\ 2 部电梯],
+      水电网: good[正常#quest],
+      快递站: bad[远],
+      外卖柜: good[东门柜],
+      浴室: bad[远 #v(.25em) #neutral[有套间浴室]\ 但无热水],
+      教学楼: bad[远],
+      科研楼: neutral[中],
+      装修年份: [#quest\ 早于 2003],
+      住宿费: [1020],
+      说明: [
+        可参考#backlink("https://bbs.byr.cn/#!article/Picture/3377378")[北邮人论坛]
 
-  dorm(male[学 10]),
-  [本硕博],
-  neutral[6],
-  good[上床下桌],
-  neutral[公卫],
-  good[有],
-  neutral[15 层\ 7 部电梯],
-  good[正常#quest],
-  good[近],
-  good[北门柜],
-  neutral[近],
-  bad[远],
-  neutral[中],
-  [2011],
-  [900],
-  [
-    楼道内通风、采光差
+        曾经是家属区眷 29 楼，非典时期被征用为非典塔，后空置直到学校扩招被征用为宿舍；高层曾用作留学生宿舍
 
-    无夜间门禁
-  ],
+        只有一楼有热饮用水
+      ],
+    )),
 
-  dorm(male[学 6\ （4 人间）]),
-  [本  ],
-  neutral[4 (6)],
-  bad[上下铺],
-  bad[独卫],
-  [除#bad[一楼]外#good[有]],
-  bad[6 层\ 无电梯],
-  bad[年均一次夏季停电],
-  good[近],
-  good[科研楼柜],
-  neutral[近],
-  bad[远],
-  good[近],
-  [2003],
-  [1020],
-  [
-    有翻修计划，正在方案设计阶段
-  ],
+    ..dormitory((
+      楼名: [#female[学 9]\ #female[学 11]],
+      住户: [本  ],
+      人数: good[4],
+      家具: good[上床下桌],
+      卫生间: neutral[公卫],
+      阳台: bad[无],
+      楼层: neutral[5 层\ 无电梯],
+      水电网: bad[凌晨停冲厕中水],
+      快递站: good[近],
+      外卖柜: good[北门柜],
+      浴室: neutral[中\ #wip[层浴尚未启用]],
+      教学楼: bad[远],
+      科研楼: bad[远],
+      装修年份: [2024],
+      住宿费: [750],
+      说明: [
+        单寝面积很小
+      ],
+    )),
 
-  dorm(female[学 4\ （6 人间）]),
-  [本硕 ],
-  neutral[6],
-  bad[上下铺],
-  neutral[独卫],
-  good[有],
-  neutral[12 层\ 2 部电梯],
-  good[正常#quest],
-  neutral[中],
-  neutral[北门柜\ 西门柜],
-  [#neutral[中]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
-  neutral[中],
-  bad[远],
-  [#quest\ 早于 2001],
-  [850],
-  [
-    单寝面积略大于学 6
+    ..dormitory(rows: 2, (
+      楼名: (
+        mixed[学 8],
+        female[学 4\ （4 人间）],
+      ),
+      住户: (
+        [#ruby[仅元][本] 博],
+        [  博],
+      ),
+      人数: good[4],
+      家具: good[上床下桌],
+      卫生间: neutral[独卫],
+      阳台: good[有],
+      楼层: neutral[12 层\ 2 部电梯],
+      水电网: good[正常#quest],
+      快递站: (
+        good[近],
+        neutral[中],
+      ),
+      外卖柜: (
+        neutral[北门柜],
+        neutral[北门柜\ 西门柜],
+      ),
+      浴室: (
+        [#neutral[近]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
+        [#neutral[中]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
+      ),
+      教学楼: (
+        neutral[中],
+        neutral[中],
+      ),
+      科研楼: (
+        neutral[中],
+        bad[远],
+      ),
+      装修年份: [#quest\ 早于 2001],
+      住宿费: (
+        [1200],
+        [850],
+      ),
+      说明: [
+        部分房间地漏不可用，楼板渗水，搭配独浴和停水忘关水龙头有奇效
+      ],
+    )),
 
-    有和前面学 8 相同的所有问题
-  ],
+    ..dormitory((
+      楼名: [#mixed[学 3]\ #male[学 5]],
+      住户: [#male[本]硕 ],
+      人数: neutral[6],
+      家具: good[上床下桌],
+      卫生间: bad[公卫],
+      阳台: good[有],
+      楼层: bad[15 层\ 2 部电梯],
+      水电网: bad[凌晨停冲厕中水],
+      快递站: neutral[中],
+      外卖柜: neutral[北门柜\ 西门柜],
+      浴室: neutral[中],
+      教学楼: neutral[中],
+      科研楼: bad[远],
+      装修年份: [2004],
+      住宿费: [900],
+      说明: [
+        均摊千人一部电梯，有时等待时间极长
 
-  dorm(male[学 6\ （6 人间）]),
-  [本  ],
-  neutral[6],
-  bad[上下铺],
-  bad[独卫],
-  [除#bad[一楼]外#good[有]],
-  bad[6 层\ 无电梯],
-  bad[年均一次夏季停电],
-  good[近],
-  good[科研楼柜],
-  neutral[近],
-  bad[远],
-  good[近],
-  [2003],
-  [1020],
-  [
-    有翻修计划，正在方案设计阶段
-  ],
-)
+        除一楼和顶楼外层高很低，床上难以坐直
+      ],
+    )),
+
+    ..dormitory((
+      楼名: male[学 10],
+      住户: [本硕博],
+      人数: neutral[6],
+      家具: good[上床下桌],
+      卫生间: neutral[公卫],
+      阳台: good[有],
+      楼层: neutral[15 层\ 7 部电梯],
+      水电网: good[正常#quest],
+      快递站: good[近],
+      外卖柜: good[北门柜],
+      浴室: neutral[近],
+      教学楼: bad[远],
+      科研楼: neutral[中],
+      装修年份: [2011],
+      住宿费: [900],
+      说明: [
+        楼道内通风、采光差
+
+        无夜间门禁
+      ],
+    )),
+
+    ..dormitory((
+      楼名: male[学 6\ （4 人间）],
+      住户: [本  ],
+      人数: neutral[4 (6)],
+      家具: bad[上下铺],
+      卫生间: bad[独卫],
+      阳台: [除#bad[一楼]外#good[有]],
+      楼层: bad[6 层\ 无电梯],
+      水电网: bad[年均一次夏季停电],
+      快递站: good[近],
+      外卖柜: good[科研楼柜],
+      浴室: neutral[近],
+      教学楼: bad[远],
+      科研楼: good[近],
+      装修年份: [2003],
+      住宿费: [1020],
+      说明: [
+        有翻修计划，正在方案设计阶段
+      ],
+    )),
+
+    ..dormitory((
+      楼名: female[学 4\ （6 人间）],
+      住户: [本硕 ],
+      人数: neutral[6],
+      家具: bad[上下铺],
+      卫生间: neutral[独卫],
+      阳台: good[有],
+      楼层: neutral[12 层\ 2 部电梯],
+      水电网: good[正常#quest],
+      快递站: neutral[中],
+      外卖柜: neutral[北门柜\ 西门柜],
+      浴室: [#neutral[中]\ #neutral[部分寝室有独浴]\ #bad[但无热水]],
+      教学楼: neutral[中],
+      科研楼: bad[远],
+      装修年份: [#quest\ 早于 2001],
+      住宿费: [850],
+      说明: [
+        单寝面积略大于学 6
+
+        有和学 8 相同的所有问题
+      ],
+    )),
+
+    ..dormitory((
+      楼名: male[学 6\ （6 人间）],
+      住户: [本  ],
+      人数: neutral[6],
+      家具: bad[上下铺],
+      卫生间: bad[独卫],
+      阳台: [除#bad[一楼]外#good[有]],
+      楼层: bad[6 层\ 无电梯],
+      水电网: bad[年均一次夏季停电],
+      快递站: good[近],
+      外卖柜: good[科研楼柜],
+      浴室: neutral[近],
+      教学楼: bad[远],
+      科研楼: good[近],
+      装修年份: [2003],
+      住宿费: [1020],
+      说明: [
+        有翻修计划，正在方案设计阶段
+      ],
+    )),
+  )
+}
 
 #let 表格注 = stack(
   dir: ttb,
@@ -387,7 +527,7 @@
 表格旨在提供信息而非斗个高低，因此不接受类似“某某宿舍排高了，应该往后放”的建议和批评——几乎所有人都觉得别人住得比自己好，笔者收到的大部分反馈只是纯粹的发牢骚。
 
 #{
-  show: align.with(center + horizon)
+  set align(center + horizon)
 
   stack(
     dir: ltr,
