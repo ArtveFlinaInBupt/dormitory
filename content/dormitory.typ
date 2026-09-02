@@ -72,16 +72,8 @@
   let dorm-name-cell = tcell.with(x: all-columns.楼名.x)
   let description-cell = tcell.with(x: all-columns.说明.x)
 
-  let wip-dormitory(name: [], description: []) = (
-    dorm-name-cell(wip(name)),
-    tcell(
-      colspan: all-columns.len() - all-columns.filter(it => not it.required or it.meta).len(),
-      quest,
-    ),
-    description-cell(description),
-  )
-
-  let dormitory(rows: 1, columns) = {
+  let dormitory(rows: 1, ..args) = {
+    let columns = args.named()
     assert.eq(type(columns), dictionary, message: "dormitory() expects a dictionary of columns")
 
     let required-columns = all-columns.filter(it => it.required).keys()
@@ -136,7 +128,8 @@
 
     沙河-cell(x: all-columns.校区.x, rowspan: 7, body: [沙河校区]),
 
-    ..dormitory(rows: 2, (
+    ..dormitory(
+      rows: 2,
       楼名: wip({
         let box = box.with(baseline: (at: horizon, shift: -font.axis-height))
         $
@@ -163,9 +156,10 @@
 
         名为研究生公寓，实际上不只有研究生居住
       ],
-    )),
+    ),
 
-    ..dormitory(rows: 5, (
+    ..dormitory(
+      rows: 5,
       楼名: (
         female[雁南 S6 \[雁南 5 号楼\]],
         [#female[雁南 S5 \[雁南 4 号楼\]]\ #female[雁南 S4 \[雁南 3 号楼\]]\ #male[雁南 S3 \[雁南 2 号楼\]\ 雁南 S2 \[雁南 1 号楼\]]],
@@ -217,11 +211,12 @@
           ],
         ),
       ),
-    )),
+    ),
 
     本部-cell(x: all-columns.校区.x, rowspan: 12, body: [西土城\ 校区\ （校本部）]),
 
-    ..dormitory(rows: 3, (
+    ..dormitory(
+      rows: 3,
       楼名: (male[学 13\ （2 人间）], [#wip[学 1]\ #male[学 2]], male[学 13\ （4 人间）]),
       住户: ([  博], quest, [ 硕 ]),
       人数: (good[2], (rows: 2, body: good[4])),
@@ -245,9 +240,9 @@
       说明: [
         使用沙河雁南换下的家具
       ],
-    )),
+    ),
 
-    ..dormitory((
+    ..dormitory(
       楼名: female[学 29],
       住户: [#ruby[仅元][本]硕博],
       人数: [8 人套间\ 每室 #good[2 \~ 4] 人],
@@ -270,9 +265,9 @@
 
         只有一楼有热饮用水
       ],
-    )),
+    ),
 
-    ..dormitory((
+    ..dormitory(
       楼名: [#female[学 9]\ #female[学 11]],
       住户: [本  ],
       人数: good[4],
@@ -291,9 +286,10 @@
       说明: [
         单寝面积很小
       ],
-    )),
+    ),
 
-    ..dormitory(rows: 2, (
+    ..dormitory(
+      rows: 2,
       楼名: (mixed[学 8], female[学 4\ （4 人间）]),
       住户: ([#ruby[仅元][本] 博], [  博]),
       人数: good[4],
@@ -315,9 +311,9 @@
       说明: [
         部分房间地漏不可用，楼板渗水，搭配独浴和停水忘关水龙头有奇效
       ],
-    )),
+    ),
 
-    ..dormitory((
+    ..dormitory(
       楼名: [#mixed[学 3]\ #male[学 5]],
       住户: [#male[本]硕 ],
       人数: neutral[6],
@@ -338,9 +334,9 @@
 
         除一楼和顶楼外层高很低，床上难以坐直
       ],
-    )),
+    ),
 
-    ..dormitory((
+    ..dormitory(
       楼名: male[学 10],
       住户: [本硕博],
       人数: neutral[6],
@@ -363,9 +359,9 @@
 
         无夜间门禁
       ],
-    )),
+    ),
 
-    ..dormitory((
+    ..dormitory(
       楼名: male[学 6\ （4 人间）],
       住户: [本  ],
       人数: neutral[4 (6)],
@@ -384,9 +380,9 @@
       说明: [
         有翻修计划，正在方案设计阶段
       ],
-    )),
+    ),
 
-    ..dormitory((
+    ..dormitory(
       楼名: female[学 4\ （6 人间）],
       住户: [本硕 ],
       人数: neutral[6],
@@ -407,9 +403,9 @@
 
         有和学 8 相同的所有问题
       ],
-    )),
+    ),
 
-    ..dormitory((
+    ..dormitory(
       楼名: male[学 6\ （6 人间）],
       住户: [本  ],
       人数: neutral[6],
@@ -428,7 +424,7 @@
       说明: [
         有翻修计划，正在方案设计阶段
       ],
-    )),
+    ),
   )
 }
 
