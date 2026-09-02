@@ -109,7 +109,7 @@
       [*家具*],
     ),
 
-    沙河-cell(x: all-columns.校区.x, rowspan: 7, body: [沙河校区]),
+    沙河-cell(x: all-columns.校区.x, rowspan: 6, body: [沙河校区]),
 
     ..dormitory(
       rows: 2,
@@ -126,21 +126,28 @@
     ),
 
     ..dormitory(
-      rows: 5,
+      rows: 4,
       楼名: (
         female[雁南 S6 \[雁南 5 号楼\]],
         [
-          #female[雁南 S5 \[雁南 4 号楼\]]\
-          #female[雁南 S4 \[雁南 3 号楼\]]\
-          #male[雁南 S3 \[雁南 2 号楼\]\
-            雁南 S2 \[雁南 1 号楼\]]
+          #female[雁南 S5 \[雁南 4 号楼\]] \
+          #female[雁南 S4 \[雁南 3 号楼\]] \
+          #male[雁南 S3 \[雁南 2 号楼\]] \
+          #male[雁南 S2 \[雁南 1 号楼\]] \
         ],
-        [#male[雁北 E \[雁北 6 号楼\]]\ #male[雁北 D2 \[雁北 5 号楼\]]],
-        [#male[雁北 D1 \[雁北 4 号楼\]]\ #male[雁北 C \[雁北 3 号楼\]]],
-        [#male[雁北 B \[雁北 2 号楼\]]\ #male[雁北 A \[雁北 1 号楼\]]],
+        [
+          #male[雁北 E \[雁北 6 号楼\]] \
+          #male[雁北 D2 \[雁北 5 号楼\]] \
+        ],
+        [
+          #male[雁北 D1 \[雁北 4 号楼\]] \
+          #male[雁北 C \[雁北 3 号楼\]] \
+          #male[雁北 B \[雁北 2 号楼\]] \
+          #male[雁北 A \[雁北 1 号楼\]] \
+        ],
       ),
       住户: [本硕博],
-      人数: (good[4], [#good[4]\ #neutral[5 (6)], #neutral[6]], (rows: 3, body: good[4])),
+      人数: (good[4], [#good[4]\ #neutral[5 (6)], #neutral[6]], (rows: 2, body: good[4])),
       家具: (
         good[上床下桌],
         [
@@ -150,7 +157,7 @@
             床#backlink("https://baike.baidu.com/pic/TFBOYS/9083733/0/3c6d55fbb2fb4316390c99072da4462309f7d3b8")[桌] \
           ]
         ],
-        (rows: 3, body: good[上床下桌]),
+        (rows: 2, body: good[上床下桌]),
       ),
     ),
 
@@ -453,14 +460,21 @@
       ],
     ),
 
-    沙河-cell(x: all-columns.校区.x, rowspan: 7, body: [沙河校区]),
+    沙河-cell(x: all-columns.校区.x, rowspan: 6, body: [沙河校区]),
 
     ..dormitory(
-      rows: 5,
+      rows: 4,
       楼名: (
-        [#male[雁北 A \[雁北 1 号楼\]]\ #male[雁北 B \[雁北 2 号楼\]]],
-        [#male[雁北 C \[雁北 3 号楼\]]\ #male[雁北 D1 \[雁北 4 号楼\]]],
-        [#male[雁北 D2 \[雁北 5 号楼\]]\ #male[雁北 E \[雁北 6 号楼\]]],
+        [
+          #male[雁北 A \[雁北 1 号楼\]] \
+          #male[雁北 B \[雁北 2 号楼\]] \
+          #male[雁北 C \[雁北 3 号楼\]] \
+          #male[雁北 D1 \[雁北 4 号楼\]] \
+        ],
+        [
+          #male[雁北 D2 \[雁北 5 号楼\]] \
+          #male[雁北 E \[雁北 6 号楼\]] \
+        ],
         [
           #male[雁南 S2 \[雁南 1 号楼\]] \
           #male[雁南 S3 \[雁南 2 号楼\]] \
@@ -473,18 +487,17 @@
       阳台: good[有],
       楼层: (
         neutral[6 层\ 部分有电梯#fn(3)],
-        good[6 层\ 有电梯#fn(3)],
         (rows: 3, body: good[6 层\ 有电梯]),
       ),
       水电网: good[正常],
-      快递站: ((rows: 3, body: neutral[中]), (rows: 2, body: good[近])),
+      快递站: ((rows: 2, body: neutral[中]), (rows: 2, body: good[近])),
       外卖柜: bad[小南门柜],
       浴室: good[层浴#fn(2)],
-      装修年份: ((rows: 3, body: [2014]), [2016], [2020]),
-      住宿费: ((rows: 3, body: [1200]), [900#quest], [1200]),
+      装修年份: ((rows: 2, body: [2014]), [2016], [2020]),
+      住宿费: ((rows: 2, body: [1200]), [900#quest], [1200]),
       说明: (
         (
-          rows: 3,
+          rows: 2,
           body: [
             单寝面积略小于雁南
           ],
