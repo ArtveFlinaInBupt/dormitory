@@ -519,7 +519,7 @@
     ),
 
     ..dormitory(
-      楼名: female[学 13],
+      楼名: male[学 13],
       卫生间: neutral[公卫],
       阳台: [仅有#neutral[假阳台]],
       楼层: neutral[5 层\ 无电梯],
