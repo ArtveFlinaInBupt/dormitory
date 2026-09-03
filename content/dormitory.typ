@@ -475,7 +475,7 @@
     ..dormitory(
       楼名: male[学 10],
       卫生间: neutral[公卫],
-      阳台: bad[无],
+      阳台: good[有],
       楼层: neutral[15 层\ 7 部电梯],
       水电网: good[正常],
       快递站: good[近],
