@@ -659,9 +659,9 @@
   )
 }
 
-#let 表格注 = context stack(
+#let 表格注 = stack(
   dir: ttb,
-  spacing: par.spacing,
+  spacing: spacing.par-spacing,
   ..(
     [表中列出的所有#mixed[混寝]宿舍楼中性别混合的最小单位均为*楼层*。也即，不存在同一楼层内男女混住的情况。],
     [雁北 D2, E 楼为一个区域，内部部分连通，共用电梯。D2 楼借用 E 楼公卫、水房、浴室，可能需要前往其他层。],
@@ -694,10 +694,10 @@
   set stack(spacing: 2em)
 
   stack(
-    dir: ltr,
-    stack(性别图例, 好坏图例),
-    context stack(
-      spacing: par.spacing,
+    spacing: spacing.par-spacing,
+    stack(
+      dir: ltr,
+      stack(性别图例, 好坏图例),
       align(
         horizon,
         stack(
@@ -706,8 +706,8 @@
           楼宇表格,
         ),
       ),
-      align(left, 表格注),
     ),
+    align(left, 表格注),
   )
 }
 
